@@ -1,4 +1,4 @@
-package com.josenromero.notesandmore
+package com.josenromero.notesandmore.ui.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
