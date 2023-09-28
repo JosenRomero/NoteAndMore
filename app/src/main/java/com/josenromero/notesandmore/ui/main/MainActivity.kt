@@ -3,7 +3,7 @@ package com.josenromero.notesandmore.ui.main
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.josenromero.notesandmore.ui.main.views.HomeScreen
+import com.josenromero.notesandmore.ui.main.navigation.AppNavigation
 import com.josenromero.notesandmore.ui.theme.NotesAndMoreTheme
 
 class MainActivity : ComponentActivity() {
@@ -11,7 +11,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             NotesAndMoreTheme {
-                HomeScreen()
+                AppNavigation()
             }
         }
     }

@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.josenromero.notesandmore"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.josenromero.notesandmore"
@@ -77,6 +77,10 @@ dependencies {
     // Dagger Hilt
     implementation("com.google.dagger:hilt-android:2.48")
     kapt("com.google.dagger:hilt-compiler:2.48")
+
+    // navigation-compose
+    val navVersion = "2.7.3"
+    implementation("androidx.navigation:navigation-compose:$navVersion")
 
 }
 

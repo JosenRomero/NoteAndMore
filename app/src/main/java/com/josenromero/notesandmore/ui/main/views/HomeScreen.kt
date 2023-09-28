@@ -18,7 +18,9 @@ import com.josenromero.notesandmore.ui.theme.NotesAndMoreTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    onNavigateToAddScreen: () -> Unit
+) {
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -27,7 +29,7 @@ fun HomeScreen() {
             ExtendedFloatingActionButton(
                 text = { Text(text = "Add") },
                 icon = { Icon(imageVector = Icons.Filled.Add, contentDescription = "Add") },
-                onClick = {},
+                onClick = { onNavigateToAddScreen() },
                 containerColor = MaterialTheme.colorScheme.primary
             )
         }
@@ -42,7 +44,7 @@ fun HomeScreen() {
 @Composable
 fun FakeHomeScreen() {
     NotesAndMoreTheme {
-        HomeScreen()
+        HomeScreen(onNavigateToAddScreen = {})
     }
 }
 
