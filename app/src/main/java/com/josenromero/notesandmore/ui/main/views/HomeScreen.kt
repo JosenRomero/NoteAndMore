@@ -41,11 +41,9 @@ fun HomeScreen() {
 
 @Composable
 fun FakeHomeScreen() {
-
     NotesAndMoreTheme {
         HomeScreen()
     }
-
 }
 
 @Preview
