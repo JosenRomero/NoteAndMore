@@ -17,7 +17,7 @@ fun AppNavigation() {
             HomeScreen(onNavigateToAddScreen = { navController.navigate(route = AppScreens.AddScreen.route) })
         }
         composable(route = AppScreens.AddScreen.route) {
-            AddScreen()
+            AddScreen(onNavigateToBack = { navController.popBackStack() })
         }
     }
 
