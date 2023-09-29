@@ -1,6 +1,7 @@
 package com.josenromero.notesandmore.ui.main.views
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -15,8 +16,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -36,41 +36,46 @@ fun AddScreen() {
     var title by remember { mutableStateOf("") }
     var body by remember { mutableStateOf("") }
 
-    Surface(
+    Scaffold(
         modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.surface
     ) {
-        Column(
+        Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(15.dp)
+                .padding(it)
         ) {
-            TextField(
-                modifier = Modifier.fillMaxWidth(),
-                value = title,
-                onValueChange = { newText -> title = newText },
-                label = { Text(text = "Title") }
-            )
-            Spacer(modifier = Modifier.height(15.dp))
-            TextField(
-                modifier = Modifier.fillMaxWidth(),
-                value = body,
-                onValueChange = { newText -> body = newText },
-                label = { Text(text = "Body") }
-            )
-            Spacer(modifier = Modifier.height(20.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(15.dp)
             ) {
-                Button(onClick = {}) {
-                    Icon(
-                        imageVector = Icons.Filled.Done,
-                        contentDescription = "Done",
-                        modifier = Modifier.size(ButtonDefaults.IconSize)
-                    )
-                    Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
-                    Text(text = "Save!")
+                TextField(
+                    modifier = Modifier.fillMaxWidth(),
+                    value = title,
+                    onValueChange = { newText -> title = newText },
+                    label = { Text(text = "Title") }
+                )
+                Spacer(modifier = Modifier.height(15.dp))
+                TextField(
+                    modifier = Modifier.fillMaxWidth(),
+                    value = body,
+                    onValueChange = { newText -> body = newText },
+                    label = { Text(text = "Body") }
+                )
+                Spacer(modifier = Modifier.height(20.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Button(onClick = {}) {
+                        Icon(
+                            imageVector = Icons.Filled.Done,
+                            contentDescription = "Done",
+                            modifier = Modifier.size(ButtonDefaults.IconSize)
+                        )
+                        Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
+                        Text(text = "Save!")
+                    }
                 }
             }
         }
