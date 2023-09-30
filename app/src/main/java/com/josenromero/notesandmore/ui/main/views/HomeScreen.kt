@@ -1,6 +1,5 @@
 package com.josenromero.notesandmore.ui.main.views
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -14,6 +13,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.josenromero.notesandmore.data.notes.NoteEntity
+import com.josenromero.notesandmore.ui.components.NoteList
 import com.josenromero.notesandmore.ui.theme.NotesAndMoreTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -34,9 +35,12 @@ fun HomeScreen(
             )
         }
     ) {
-        Column(modifier = Modifier.padding(it)) {
-
-        }
+        val fakeNotes = listOf<NoteEntity>(
+            NoteEntity(0, "example 1 title", "this is an example note"),
+            NoteEntity(0, "example 2 title", "this is an example note"),
+            NoteEntity(0, "example 3 title", "this is an example note")
+        )
+        NoteList(modifier = Modifier.padding(it), notes = fakeNotes, onSelectedNote = {})
     }
 
 }
