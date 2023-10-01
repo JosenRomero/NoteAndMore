@@ -16,6 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.josenromero.notesandmore.data.notes.NoteEntity
 import com.josenromero.notesandmore.ui.components.NoteList
 import com.josenromero.notesandmore.ui.theme.NotesAndMoreTheme
+import com.josenromero.notesandmore.utils.Constants
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -44,7 +45,7 @@ fun HomeScreen(
 @Composable
 fun FakeHomeScreen() {
     NotesAndMoreTheme {
-        HomeScreen(onNavigateToAddScreen = {}, notes = emptyList())
+        HomeScreen(onNavigateToAddScreen = {}, notes = Constants.fakeNotes)
     }
 }
 
