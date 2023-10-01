@@ -33,12 +33,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.josenromero.notesandmore.data.notes.NoteEntity
 import com.josenromero.notesandmore.ui.theme.NotesAndMoreTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddScreen(
-    onNavigateToBack: () -> Unit
+    onNavigateToBack: () -> Unit,
+    addOneNote: (note: NoteEntity) -> Unit
 ) {
 
     var title by remember { mutableStateOf("") }
@@ -54,7 +56,11 @@ fun AddScreen(
                 title = { Text(text = "Add a note") },
                 navigationIcon = {
                     IconButton(onClick = { onNavigateToBack() }) {
-                        Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "Back", tint = Color.White)
+                        Icon(
+                            imageVector = Icons.Filled.ArrowBack,
+                            contentDescription = "Back",
+                            tint = Color.White
+                        )
                     }
                 }
             )
@@ -89,7 +95,7 @@ fun AddScreen(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.Center
                 ) {
-                    Button(onClick = {}) {
+                    Button(onClick = { addOneNote(NoteEntity(0, title, body)) }) {
                         Icon(
                             imageVector = Icons.Filled.Done,
                             contentDescription = "Done",
@@ -108,7 +114,7 @@ fun AddScreen(
 @Composable
 fun FakeAddScreen() {
     NotesAndMoreTheme {
-        AddScreen(onNavigateToBack = {})
+        AddScreen(onNavigateToBack = {}, addOneNote = {})
     }
 }
 

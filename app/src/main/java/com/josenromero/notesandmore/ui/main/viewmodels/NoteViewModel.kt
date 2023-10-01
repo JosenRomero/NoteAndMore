@@ -46,4 +46,10 @@ class NoteViewModel @Inject constructor(
         }
     }
 
+    fun onAddOneNote(note: NoteEntity) {
+        viewModelScope.launch(Dispatchers.IO) {
+            addOneNote(note)
+        }
+    }
+
 }
