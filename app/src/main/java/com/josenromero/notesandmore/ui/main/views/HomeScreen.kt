@@ -20,7 +20,8 @@ import com.josenromero.notesandmore.ui.theme.NotesAndMoreTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    onNavigateToAddScreen: () -> Unit
+    onNavigateToAddScreen: () -> Unit,
+    notes: List<NoteEntity>
 ) {
 
     Scaffold(
@@ -35,12 +36,7 @@ fun HomeScreen(
             )
         }
     ) {
-        val fakeNotes = listOf<NoteEntity>(
-            NoteEntity(0, "example 1 title", "this is an example note"),
-            NoteEntity(0, "example 2 title", "this is an example note"),
-            NoteEntity(0, "example 3 title", "this is an example note")
-        )
-        NoteList(modifier = Modifier.padding(it), notes = fakeNotes, onSelectedNote = {})
+        NoteList(modifier = Modifier.padding(it), notes = notes, onSelectedNote = {})
     }
 
 }
@@ -48,7 +44,7 @@ fun HomeScreen(
 @Composable
 fun FakeHomeScreen() {
     NotesAndMoreTheme {
-        HomeScreen(onNavigateToAddScreen = {})
+        HomeScreen(onNavigateToAddScreen = {}, notes = emptyList())
     }
 }
 
