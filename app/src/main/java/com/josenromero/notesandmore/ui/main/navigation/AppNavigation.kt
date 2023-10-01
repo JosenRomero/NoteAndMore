@@ -25,7 +25,10 @@ fun AppNavigation() {
         composable(route = AppScreens.AddScreen.route) {
             AddScreen(
                 onNavigateToBack = { navController.popBackStack() },
-                addOneNote = { note -> noteViewModel.onAddOneNote(note) })
+                addOneNote = { note ->
+                    noteViewModel.onAddOneNote(note)
+                    navController.navigate(route = AppScreens.HomeScreen.route)
+                })
         }
     }
 
