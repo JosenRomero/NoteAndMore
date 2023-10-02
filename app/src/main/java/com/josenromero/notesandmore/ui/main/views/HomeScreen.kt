@@ -22,7 +22,8 @@ import com.josenromero.notesandmore.utils.Constants
 @Composable
 fun HomeScreen(
     onNavigateToAddScreen: () -> Unit,
-    notes: List<NoteEntity>
+    notes: List<NoteEntity>,
+    onSelectedNote: (note: NoteEntity) -> Unit
 ) {
 
     Scaffold(
@@ -37,7 +38,7 @@ fun HomeScreen(
             )
         }
     ) {
-        NoteList(modifier = Modifier.padding(it), notes = notes, onSelectedNote = {})
+        NoteList(modifier = Modifier.padding(it), notes = notes, onSelectedNote = onSelectedNote)
     }
 
 }
@@ -45,7 +46,7 @@ fun HomeScreen(
 @Composable
 fun FakeHomeScreen() {
     NotesAndMoreTheme {
-        HomeScreen(onNavigateToAddScreen = {}, notes = Constants.fakeNotes)
+        HomeScreen(onNavigateToAddScreen = {}, notes = Constants.fakeNotes, onSelectedNote = {})
     }
 }
 

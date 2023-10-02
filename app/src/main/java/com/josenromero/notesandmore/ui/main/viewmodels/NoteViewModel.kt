@@ -53,4 +53,11 @@ class NoteViewModel @Inject constructor(
         }
     }
 
+    fun onUpdateOneNote(note: NoteEntity) {
+        viewModelScope.launch(Dispatchers.IO) {
+            updateOneNote(note)
+            collectNotes()
+        }
+    }
+
 }
