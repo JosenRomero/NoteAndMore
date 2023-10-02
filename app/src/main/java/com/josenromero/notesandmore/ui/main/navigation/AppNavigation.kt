@@ -5,7 +5,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.josenromero.notesandmore.data.notes.NoteEntity
 import com.josenromero.notesandmore.ui.main.viewmodels.NoteViewModel
 import com.josenromero.notesandmore.ui.main.views.AddScreen
 import com.josenromero.notesandmore.ui.main.views.HomeScreen
@@ -23,6 +22,7 @@ fun AppNavigation() {
                 onNavigateToAddScreen = { navController.navigate(route = AppScreens.AddScreen.route) },
                 notes = noteViewModel.notes.value,
                 onSelectedNote = {note ->
+                    noteViewModel.setSelectedNote(note)
                     navController.navigate(route = AppScreens.UpdateScreen.route)
                 }
             )
@@ -37,7 +37,7 @@ fun AppNavigation() {
         }
         composable(route = AppScreens.UpdateScreen.route) {
             UpdateScreen(
-                selectedNote = NoteEntity(1, "aaaaa", "aabbbbbb"),
+                selectedNote = noteViewModel.selectedNote.value,
                 onNavigateToBack = { navController.popBackStack() },
                 updateOneNote = {note ->
                     noteViewModel.onUpdateOneNote(note)

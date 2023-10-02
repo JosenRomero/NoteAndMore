@@ -1,6 +1,5 @@
 package com.josenromero.notesandmore.ui.main.viewmodels
 
-import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -28,6 +27,9 @@ class NoteViewModel @Inject constructor(
     private val _notes: MutableState<List<NoteEntity>> = mutableStateOf(emptyList())
     val notes: State<List<NoteEntity>> get() = _notes
 
+    private val _selectedNote: MutableState<NoteEntity> = mutableStateOf(NoteEntity())
+    val selectedNote: State<NoteEntity> get() = _selectedNote
+
     init {
         collectNotes()
     }
@@ -36,8 +38,6 @@ class NoteViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
 
             val allNotes = getAllNotes()
-
-            Log.d("Notes", allNotes.toString())
 
             withContext(Dispatchers.Main) {
                 _notes.value = allNotes
@@ -58,6 +58,10 @@ class NoteViewModel @Inject constructor(
             updateOneNote(note)
             collectNotes()
         }
+    }
+
+    fun setSelectedNote(note: NoteEntity) {
+        _selectedNote.value = note
     }
 
 }
