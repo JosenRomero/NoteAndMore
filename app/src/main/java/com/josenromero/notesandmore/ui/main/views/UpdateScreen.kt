@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -35,13 +36,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.josenromero.notesandmore.data.notes.NoteEntity
 import com.josenromero.notesandmore.ui.theme.NotesAndMoreTheme
+import com.josenromero.notesandmore.utils.Constants
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UpdateScreen(
     selectedNote: NoteEntity,
     onNavigateToBack: () -> Unit,
-    updateOneNote: (note: NoteEntity) -> Unit
+    updateOneNote: (note: NoteEntity) -> Unit,
+    deleteOneNote: (note: NoteEntity) -> Unit
 ) {
 
     var title by remember { mutableStateOf(selectedNote.title) }
@@ -60,6 +63,15 @@ fun UpdateScreen(
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
                             contentDescription = "Back",
+                            tint = Color.White
+                        )
+                    }
+                },
+                actions = {
+                    IconButton(onClick = { deleteOneNote(selectedNote) }) {
+                        Icon(
+                            imageVector = Icons.Filled.Delete,
+                            contentDescription = "Delete",
                             tint = Color.White
                         )
                     }
@@ -95,10 +107,10 @@ fun UpdateScreen(
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.Center
-                ){
+                ) {
                     Button(onClick = { updateOneNote(NoteEntity(selectedNote.uid, title, body)) }) {
                         Icon(
-                            imageVector = Icons.Filled.Done, 
+                            imageVector = Icons.Filled.Done,
                             contentDescription = "Done",
                             modifier = Modifier.size(ButtonDefaults.IconSize)
                         )
@@ -115,8 +127,11 @@ fun UpdateScreen(
 @Composable
 fun FakeUpdateScreen() {
     NotesAndMoreTheme {
-        val fakeNote = NoteEntity(0, "example title", "this is an example note")
-        UpdateScreen(selectedNote = fakeNote, onNavigateToBack = {}, updateOneNote = {})
+        UpdateScreen(
+            selectedNote = Constants.fakeNotes[0],
+            onNavigateToBack = {},
+            updateOneNote = {},
+            deleteOneNote = {})
     }
 }
 

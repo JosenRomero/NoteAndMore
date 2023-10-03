@@ -42,6 +42,10 @@ fun AppNavigation() {
                 updateOneNote = {note ->
                     noteViewModel.onUpdateOneNote(note)
                     navController.navigate(route = AppScreens.HomeScreen.route)
+                },
+                deleteOneNote = {note ->
+                    noteViewModel.onDeleteOneNote(note)
+                    navController.navigate(route = AppScreens.HomeScreen.route)
                 }
             )
         }
