@@ -1,5 +1,7 @@
 package com.josenromero.notesandmore.ui.main.navigation
 
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
@@ -27,7 +29,21 @@ fun AppNavigation() {
                 }
             )
         }
-        composable(route = AppScreens.AddScreen.route) {
+        composable(
+            route = AppScreens.AddScreen.route,
+            enterTransition = {
+                slideIntoContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Up,
+                    animationSpec = tween(700)
+                )
+            },
+            exitTransition = {
+                slideOutOfContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Down,
+                    animationSpec = tween(700)
+                )
+            }
+        ) {
             AddScreen(
                 onNavigateToBack = { navController.popBackStack() },
                 addOneNote = { note ->
@@ -35,7 +51,21 @@ fun AppNavigation() {
                     navController.navigate(route = AppScreens.HomeScreen.route)
                 })
         }
-        composable(route = AppScreens.UpdateScreen.route) {
+        composable(
+            route = AppScreens.UpdateScreen.route,
+            enterTransition = {
+                slideIntoContainer(
+                    towards = AnimatedContentTransitionScope.SlideDirection.Left,
+                    animationSpec = tween(700)
+                )
+            },
+            exitTransition = {
+                slideOutOfContainer(
+                    towards = AnimatedContentTransitionScope.SlideDirection.Right,
+                    animationSpec = tween(700)
+                )
+            }
+        ) {
             UpdateScreen(
                 selectedNote = noteViewModel.selectedNote.value,
                 onNavigateToBack = { navController.popBackStack() },
