@@ -12,6 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.josenromero.notesandmore.data.notes.NoteEntity
 import com.josenromero.notesandmore.ui.theme.NotesAndMoreTheme
+import com.josenromero.notesandmore.utils.Constants
 
 @Composable
 fun NoteList(
@@ -38,12 +39,7 @@ fun NoteList(
 @Composable
 fun FakeNoteList() {
     NotesAndMoreTheme {
-        val fakeNotes = listOf<NoteEntity>(
-            NoteEntity(0, "example 1 title", "this is an example note"),
-            NoteEntity(0, "example 2 title", "this is an example note"),
-            NoteEntity(0, "example 3 title", "this is an example note")
-        )
-        NoteList(notes = fakeNotes, onSelectedNote = {})
+        NoteList(notes = Constants.fakeNotes, onSelectedNote = {})
     }
 }
 

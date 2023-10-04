@@ -15,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.josenromero.notesandmore.data.notes.NoteEntity
 import com.josenromero.notesandmore.ui.theme.NotesAndMoreTheme
+import com.josenromero.notesandmore.utils.Constants
 
 @Composable
 fun NoteCard(
@@ -51,8 +52,7 @@ fun NoteCard(
 @Composable
 fun FakeNoteCard() {
     NotesAndMoreTheme {
-        val fakeNote = NoteEntity(0, "example title", "this is an example note")
-        NoteCard(note = fakeNote, onSelectedNote = {})
+        NoteCard(note = Constants.fakeNotes[0], onSelectedNote = {})
     }
 }
 
