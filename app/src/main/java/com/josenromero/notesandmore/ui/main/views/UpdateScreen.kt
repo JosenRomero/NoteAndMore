@@ -1,28 +1,24 @@
 package com.josenromero.notesandmore.ui.main.views
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Done
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -75,6 +71,13 @@ fun UpdateScreen(
                             tint = Color.White
                         )
                     }
+                    IconButton(onClick = { updateOneNote(NoteEntity(selectedNote.uid, title, body)) }) {
+                        Icon(
+                            imageVector = Icons.Filled.Done,
+                            contentDescription = "Done",
+                            tint = Color.White
+                        )
+                    }
                 }
             )
         },
@@ -90,34 +93,21 @@ fun UpdateScreen(
                     .fillMaxSize()
                     .padding(15.dp)
             ) {
-                TextField(
+                OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
                     value = title,
                     onValueChange = { newText -> title = newText },
                     label = { Text(text = "Title") }
                 )
                 Spacer(modifier = Modifier.height(15.dp))
-                TextField(
-                    modifier = Modifier.fillMaxWidth(),
+                OutlinedTextField(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight(),
                     value = body,
                     onValueChange = { newText -> body = newText },
                     label = { Text(text = "Body") }
                 )
-                Spacer(modifier = Modifier.height(20.dp))
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    Button(onClick = { updateOneNote(NoteEntity(selectedNote.uid, title, body)) }) {
-                        Icon(
-                            imageVector = Icons.Filled.Done,
-                            contentDescription = "Done",
-                            modifier = Modifier.size(ButtonDefaults.IconSize)
-                        )
-                        Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
-                        Text(text = "Update!")
-                    }
-                }
             }
         }
     }
