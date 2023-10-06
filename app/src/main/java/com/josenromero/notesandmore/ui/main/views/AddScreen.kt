@@ -1,27 +1,23 @@
 package com.josenromero.notesandmore.ui.main.views
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Done
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -45,6 +41,7 @@ fun AddScreen(
 
     var title by remember { mutableStateOf("") }
     var body by remember { mutableStateOf("") }
+    var isError by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -59,6 +56,18 @@ fun AddScreen(
                         Icon(
                             imageVector = Icons.Filled.Close,
                             contentDescription = "Back",
+                            tint = Color.White
+                        )
+                    }
+                },
+                actions = {
+                    IconButton(onClick = {
+                        if (title.trim().isEmpty()) isError = true
+                        else addOneNote(NoteEntity(0, title, body))
+                    }) {
+                        Icon(
+                            imageVector = Icons.Filled.Done,
+                            contentDescription = "Save",
                             tint = Color.White
                         )
                     }
@@ -77,34 +86,27 @@ fun AddScreen(
                     .fillMaxSize()
                     .padding(15.dp)
             ) {
-                TextField(
+                OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
                     value = title,
                     onValueChange = { newText -> title = newText },
-                    label = { Text(text = "Title") }
+                    label = { Text(text = "Note Title") },
+                    supportingText = {
+                        if (isError) {
+                            if (title.trim().isNotEmpty()) isError = false
+                            Text(text = "Add a title", color = MaterialTheme.colorScheme.error)
+                        }
+                    }
                 )
                 Spacer(modifier = Modifier.height(15.dp))
-                TextField(
-                    modifier = Modifier.fillMaxWidth(),
+                OutlinedTextField(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight(),
                     value = body,
                     onValueChange = { newText -> body = newText },
-                    label = { Text(text = "Body") }
+                    label = { Text(text = "Note Details") }
                 )
-                Spacer(modifier = Modifier.height(20.dp))
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    Button(onClick = { addOneNote(NoteEntity(0, title, body)) }) {
-                        Icon(
-                            imageVector = Icons.Filled.Done,
-                            contentDescription = "Done",
-                            modifier = Modifier.size(ButtonDefaults.IconSize)
-                        )
-                        Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
-                        Text(text = "Save!")
-                    }
-                }
             }
         }
     }
