@@ -45,6 +45,7 @@ fun UpdateScreen(
 
     var title by remember { mutableStateOf(selectedNote.title) }
     var body by remember { mutableStateOf(selectedNote.body) }
+    var isError by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -71,10 +72,13 @@ fun UpdateScreen(
                             tint = Color.White
                         )
                     }
-                    IconButton(onClick = { updateOneNote(NoteEntity(selectedNote.uid, title, body)) }) {
+                    IconButton(onClick = {
+                        if (title.trim().isEmpty()) isError = true
+                        else updateOneNote(NoteEntity(selectedNote.uid, title, body))
+                    }) {
                         Icon(
                             imageVector = Icons.Filled.Done,
-                            contentDescription = "Done",
+                            contentDescription = "Update",
                             tint = Color.White
                         )
                     }
@@ -97,7 +101,13 @@ fun UpdateScreen(
                     modifier = Modifier.fillMaxWidth(),
                     value = title,
                     onValueChange = { newText -> title = newText },
-                    label = { Text(text = "Title") }
+                    label = { Text(text = "Title") },
+                    supportingText = {
+                        if (isError) {
+                            if (title.trim().isNotEmpty()) isError = false
+                            Text(text = "Note title can't be empty", color = MaterialTheme.colorScheme.error)
+                        }
+                    }
                 )
                 Spacer(modifier = Modifier.height(15.dp))
                 OutlinedTextField(
