@@ -31,6 +31,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.josenromero.notesandmore.data.notes.NoteEntity
+import com.josenromero.notesandmore.ui.components.MyDialog
 import com.josenromero.notesandmore.ui.theme.NotesAndMoreTheme
 import com.josenromero.notesandmore.utils.Constants
 
@@ -46,6 +47,7 @@ fun UpdateScreen(
     var title by remember { mutableStateOf(selectedNote.title) }
     var body by remember { mutableStateOf(selectedNote.body) }
     var isError by remember { mutableStateOf(false) }
+    var isOpenDialog by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -65,7 +67,7 @@ fun UpdateScreen(
                     }
                 },
                 actions = {
-                    IconButton(onClick = { deleteOneNote(selectedNote) }) {
+                    IconButton(onClick = { isOpenDialog = true }) {
                         Icon(
                             imageVector = Icons.Filled.Delete,
                             contentDescription = "Delete",
@@ -105,7 +107,10 @@ fun UpdateScreen(
                     supportingText = {
                         if (isError) {
                             if (title.trim().isNotEmpty()) isError = false
-                            Text(text = "Note title can't be empty", color = MaterialTheme.colorScheme.error)
+                            Text(
+                                text = "Note title can't be empty",
+                                color = MaterialTheme.colorScheme.error
+                            )
                         }
                     }
                 )
@@ -118,6 +123,18 @@ fun UpdateScreen(
                     onValueChange = { newText -> body = newText },
                     label = { Text(text = "Body") }
                 )
+                if (isOpenDialog) {
+                    MyDialog(
+                        onDismissRequest = { isOpenDialog = false },
+                        confirm = {
+                            deleteOneNote(selectedNote)
+                            isOpenDialog = false
+                        },
+                        dismiss = { isOpenDialog = false },
+                        title = "Delete Note",
+                        text = "Are you sure?",
+                    )
+                }
             }
         }
     }
