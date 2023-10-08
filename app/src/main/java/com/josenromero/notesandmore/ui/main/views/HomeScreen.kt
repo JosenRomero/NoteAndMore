@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.josenromero.notesandmore.data.notes.NoteEntity
+import com.josenromero.notesandmore.ui.components.EmptyNoteList
 import com.josenromero.notesandmore.ui.components.NoteList
 import com.josenromero.notesandmore.ui.theme.NotesAndMoreTheme
 import com.josenromero.notesandmore.utils.Constants
@@ -38,6 +39,9 @@ fun HomeScreen(
             )
         }
     ) {
+        if (notes.isEmpty()) {
+            EmptyNoteList()
+        }
         NoteList(modifier = Modifier.padding(it), notes = notes, onSelectedNote = onSelectedNote)
     }
 
