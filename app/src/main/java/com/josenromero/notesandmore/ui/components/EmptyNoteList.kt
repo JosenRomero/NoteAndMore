@@ -11,7 +11,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -30,9 +29,9 @@ fun EmptyNoteList() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Icon(painter = painterResource(id = R.drawable.note), contentDescription = "icon")
-            Text(text = "No notes", color = Color.White)
+            Text(text = "No notes")
             Spacer(modifier = Modifier.height(30.dp))
-            Text(text = "The notes you add will appear here.", color = Color.White)
+            Text(text = "The notes you add will appear here.")
         }
     }
 
@@ -45,7 +44,7 @@ fun FakeEmptyNoteList() {
     }
 }
 
-@Preview()
+@Preview
 @Composable
 fun EmptyNoteListPreview() {
     FakeEmptyNoteList()

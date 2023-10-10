@@ -75,6 +75,7 @@ fun AddScreen(
             )
         },
         modifier = Modifier.fillMaxSize(),
+        containerColor = MaterialTheme.colorScheme.background
     ) {
         Box(
             modifier = Modifier
