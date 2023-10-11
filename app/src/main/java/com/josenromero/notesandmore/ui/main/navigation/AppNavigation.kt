@@ -10,6 +10,7 @@ import androidx.navigation.compose.rememberNavController
 import com.josenromero.notesandmore.ui.main.viewmodels.NoteViewModel
 import com.josenromero.notesandmore.ui.main.views.AddScreen
 import com.josenromero.notesandmore.ui.main.views.HomeScreen
+import com.josenromero.notesandmore.ui.main.views.SplashScreen
 import com.josenromero.notesandmore.ui.main.views.UpdateScreen
 
 @Composable
@@ -18,7 +19,15 @@ fun AppNavigation() {
     val navController = rememberNavController()
     val noteViewModel: NoteViewModel = hiltViewModel()
 
-    NavHost(navController = navController, startDestination = AppScreens.HomeScreen.route) {
+    NavHost(navController = navController, startDestination = AppScreens.SplashScreen.route) {
+        composable(route = AppScreens.SplashScreen.route) {
+            SplashScreen(
+                onNavigateToHomeScreen = {
+                    navController.popBackStack()
+                    navController.navigate(route = AppScreens.HomeScreen.route)
+                }
+            )
+        }
         composable(route = AppScreens.HomeScreen.route) {
             HomeScreen(
                 onNavigateToAddScreen = { navController.navigate(route = AppScreens.AddScreen.route) },
