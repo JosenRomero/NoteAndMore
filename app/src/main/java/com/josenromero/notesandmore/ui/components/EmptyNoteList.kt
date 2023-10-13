@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,7 +29,11 @@ fun EmptyNoteList() {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Icon(painter = painterResource(id = R.drawable.note), contentDescription = "icon")
+            Icon(
+                painter = painterResource(id = R.drawable.note),
+                contentDescription = "icon",
+                modifier = Modifier.size(64.dp)
+            )
             Text(text = "No notes")
             Spacer(modifier = Modifier.height(30.dp))
             Text(text = "The notes you add will appear here.")
