@@ -7,6 +7,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.josenromero.notesandmore.data.notes.NoteEntity
 import com.josenromero.notesandmore.ui.main.viewmodels.NoteViewModel
 import com.josenromero.notesandmore.ui.main.views.AddScreen
 import com.josenromero.notesandmore.ui.main.views.HomeScreen
@@ -82,8 +83,8 @@ fun AppNavigation() {
                     noteViewModel.onUpdateOneNote(note)
                     navController.navigate(route = AppScreens.HomeScreen.route)
                 },
-                deleteOneNote = {note ->
-                    noteViewModel.onDeleteOneNote(note)
+                trashedOneNote = {note ->
+                    noteViewModel.onUpdateOneNote(NoteEntity(note.uid, note.title, note.body, 1))
                     navController.navigate(route = AppScreens.HomeScreen.route)
                 }
             )

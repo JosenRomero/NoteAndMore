@@ -11,7 +11,7 @@ import com.josenromero.notesandmore.utils.Constants
 @Dao
 interface NoteDao {
 
-    @Query("SELECT * FROM ${Constants.note_table} ORDER BY uid ASC")
+    @Query("SELECT * FROM ${Constants.note_table} WHERE trashed = 0 ORDER BY uid ASC")
     fun getAllNotes(): List<NoteEntity>
 
     @Insert

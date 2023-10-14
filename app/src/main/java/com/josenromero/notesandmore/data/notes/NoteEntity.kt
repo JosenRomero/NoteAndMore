@@ -9,5 +9,6 @@ import com.josenromero.notesandmore.utils.Constants
 data class NoteEntity(
     @PrimaryKey(autoGenerate = true) val uid: Int = 0,
     @ColumnInfo (name = "title") val title: String = "",
-    @ColumnInfo (name = "body") val body: String = ""
+    @ColumnInfo (name = "body") val body: String = "",
+    @ColumnInfo (name = "trashed") val trashed: Int = 0
 )

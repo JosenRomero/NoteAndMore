@@ -41,7 +41,7 @@ fun UpdateScreen(
     selectedNote: NoteEntity,
     onNavigateToBack: () -> Unit,
     updateOneNote: (note: NoteEntity) -> Unit,
-    deleteOneNote: (note: NoteEntity) -> Unit
+    trashedOneNote: (note: NoteEntity) -> Unit
 ) {
 
     var title by remember { mutableStateOf(selectedNote.title) }
@@ -128,7 +128,7 @@ fun UpdateScreen(
                     MyDialog(
                         onDismissRequest = { isOpenDialog = false },
                         confirm = {
-                            deleteOneNote(selectedNote)
+                            trashedOneNote(selectedNote)
                             isOpenDialog = false
                         },
                         dismiss = { isOpenDialog = false },
@@ -149,7 +149,7 @@ fun FakeUpdateScreen() {
             selectedNote = Constants.fakeNotes[0],
             onNavigateToBack = {},
             updateOneNote = {},
-            deleteOneNote = {})
+            trashedOneNote = {})
     }
 }
 
