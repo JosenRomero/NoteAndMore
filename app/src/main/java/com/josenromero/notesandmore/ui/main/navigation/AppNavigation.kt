@@ -12,6 +12,7 @@ import com.josenromero.notesandmore.ui.main.viewmodels.NoteViewModel
 import com.josenromero.notesandmore.ui.main.views.AddScreen
 import com.josenromero.notesandmore.ui.main.views.HomeScreen
 import com.josenromero.notesandmore.ui.main.views.SplashScreen
+import com.josenromero.notesandmore.ui.main.views.TrashScreen
 import com.josenromero.notesandmore.ui.main.views.UpdateScreen
 
 @Composable
@@ -32,6 +33,7 @@ fun AppNavigation() {
         composable(route = AppScreens.HomeScreen.route) {
             HomeScreen(
                 onNavigateToAddScreen = { navController.navigate(route = AppScreens.AddScreen.route) },
+                onNavigateToTrashScreen = { navController.navigate(route = AppScreens.TrashScreen.route)},
                 notes = noteViewModel.notes.value,
                 onSelectedNote = {note ->
                     noteViewModel.setSelectedNote(note)
@@ -87,6 +89,27 @@ fun AppNavigation() {
                     noteViewModel.onUpdateOneNote(NoteEntity(note.uid, note.title, note.body, 1))
                     navController.navigate(route = AppScreens.HomeScreen.route)
                 }
+            )
+        }
+        composable(
+            route = AppScreens.TrashScreen.route,
+            enterTransition = {
+                slideIntoContainer(
+                    towards = AnimatedContentTransitionScope.SlideDirection.Left,
+                    animationSpec = tween(700)
+                )
+            },
+            exitTransition = {
+                slideOutOfContainer(
+                    towards = AnimatedContentTransitionScope.SlideDirection.Right,
+                    animationSpec = tween(700)
+                )
+            }
+        ) {
+            TrashScreen(
+                onNavigateToBack = { navController.popBackStack() },
+                trashedNotes = emptyList(),
+                onSelectedtrashedNote = {}
             )
         }
     }
