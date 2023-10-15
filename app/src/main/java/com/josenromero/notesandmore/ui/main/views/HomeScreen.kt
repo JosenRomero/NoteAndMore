@@ -86,7 +86,7 @@ fun HomeScreen(
             }
         ) {
             if (notes.isEmpty()) {
-                EmptyNoteList()
+                EmptyNoteList(text = "The notes you add will appear here.")
             }
             NoteList(modifier = Modifier.padding(it), notes = notes, onSelectedNote = onSelectedNote)
         }

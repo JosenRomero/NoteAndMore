@@ -19,7 +19,9 @@ import com.josenromero.notesandmore.R
 import com.josenromero.notesandmore.ui.theme.NotesAndMoreTheme
 
 @Composable
-fun EmptyNoteList() {
+fun EmptyNoteList(
+    text: String
+) {
 
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -36,7 +38,7 @@ fun EmptyNoteList() {
             )
             Text(text = "No notes")
             Spacer(modifier = Modifier.height(30.dp))
-            Text(text = "The notes you add will appear here.")
+            Text(text = text)
         }
     }
 
@@ -45,7 +47,7 @@ fun EmptyNoteList() {
 @Composable
 fun FakeEmptyNoteList() {
     NotesAndMoreTheme {
-        EmptyNoteList()
+        EmptyNoteList("The notes you add will appear here.")
     }
 }
 
