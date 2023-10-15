@@ -108,7 +108,7 @@ fun AppNavigation() {
         ) {
             TrashScreen(
                 onNavigateToBack = { navController.popBackStack() },
-                trashedNotes = emptyList(),
+                trashedNotes = noteViewModel.trashedNotes.value,
                 onSelectedtrashedNote = {}
             )
         }

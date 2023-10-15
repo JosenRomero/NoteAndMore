@@ -10,6 +10,10 @@ class NoteRepository @Inject constructor(
         return noteDao.getAllNotes()
     }
 
+    fun getAllTrashedNotes(): List<NoteEntity> {
+        return noteDao.getAllTrashedNotes()
+    }
+
     fun addOneNote(note: NoteEntity) {
         noteDao.addOneNote(note)
     }

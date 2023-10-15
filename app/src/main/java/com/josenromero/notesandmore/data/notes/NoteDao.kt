@@ -14,6 +14,9 @@ interface NoteDao {
     @Query("SELECT * FROM ${Constants.note_table} WHERE trashed = 0 ORDER BY uid ASC")
     fun getAllNotes(): List<NoteEntity>
 
+    @Query("SELECT * FROM ${Constants.note_table} WHERE trashed = 1 ORDER BY uid ASC")
+    fun getAllTrashedNotes(): List<NoteEntity>
+
     @Insert
     fun addOneNote(note: NoteEntity)
 
