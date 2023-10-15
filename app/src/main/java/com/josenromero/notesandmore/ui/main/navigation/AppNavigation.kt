@@ -35,6 +35,7 @@ fun AppNavigation() {
                 onNavigateToAddScreen = { navController.navigate(route = AppScreens.AddScreen.route) },
                 onNavigateToTrashScreen = { navController.navigate(route = AppScreens.TrashScreen.route)},
                 notes = noteViewModel.notes.value,
+                trashNotesTotal = noteViewModel.trashedNotes.value.size,
                 onSelectedNote = {note ->
                     noteViewModel.setSelectedNote(note)
                     navController.navigate(route = AppScreens.UpdateScreen.route)

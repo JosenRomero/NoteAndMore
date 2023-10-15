@@ -31,6 +31,7 @@ import com.josenromero.notesandmore.R
 @Composable
 fun Menu(
     notesTotal: Int,
+    trashNotesTotal: Int,
     onNavigateToHomeScreen: () -> Unit,
     onNavigateToTrashScreen: () -> Unit
 ) {
@@ -80,11 +81,11 @@ fun Menu(
                     modifier = Modifier.size(32.dp)
                 )
                 NavigationDrawerItem(
-                    label = { Text(text = "Trash") }, 
-                    selected = false, 
+                    label = { Text(text = "Trash") },
+                    selected = false,
                     onClick = { onNavigateToTrashScreen() },
                     badge = {
-                        Text(text = "0")
+                        Text(text = trashNotesTotal.toString())
                     }
                 )
             }
@@ -96,11 +97,19 @@ fun Menu(
 @Preview
 @Composable
 fun MenuPreview() {
-    Menu(notesTotal = 5, onNavigateToHomeScreen = {}, onNavigateToTrashScreen = {})
+    Menu(
+        notesTotal = 5,
+        trashNotesTotal = 2,
+        onNavigateToHomeScreen = {},
+        onNavigateToTrashScreen = {})
 }
 
 @Preview(uiMode = UI_MODE_NIGHT_YES)
 @Composable
 fun MenuDarkPreview() {
-    Menu(notesTotal = 5, onNavigateToHomeScreen = {}, onNavigateToTrashScreen = {})
+    Menu(
+        notesTotal = 5,
+        trashNotesTotal = 2,
+        onNavigateToHomeScreen = {},
+        onNavigateToTrashScreen = {})
 }

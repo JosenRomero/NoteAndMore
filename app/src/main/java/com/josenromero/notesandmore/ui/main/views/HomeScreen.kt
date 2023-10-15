@@ -36,6 +36,7 @@ fun HomeScreen(
     onNavigateToAddScreen: () -> Unit,
     onNavigateToTrashScreen: () -> Unit,
     notes: List<NoteEntity>,
+    trashNotesTotal: Int,
     onSelectedNote: (note: NoteEntity) -> Unit
 ) {
 
@@ -48,6 +49,7 @@ fun HomeScreen(
         drawerContent = {
             Menu(
                 notesTotal = notes.size,
+                trashNotesTotal = trashNotesTotal,
                 onNavigateToHomeScreen = { scope.launch { drawerState.close() } },
                 onNavigateToTrashScreen = { onNavigateToTrashScreen() }
             )
@@ -77,7 +79,7 @@ fun HomeScreen(
                             onClick = {
                                 scope.launch {
                                     drawerState.apply {
-                                        if(isClosed) open() else close()
+                                        if (isClosed) open() else close()
                                     }
                                 }
                             }
@@ -95,7 +97,11 @@ fun HomeScreen(
             if (notes.isEmpty()) {
                 EmptyNoteList(text = "The notes you add will appear here.")
             }
-            NoteList(modifier = Modifier.padding(it), notes = notes, onSelectedNote = onSelectedNote)
+            NoteList(
+                modifier = Modifier.padding(it),
+                notes = notes,
+                onSelectedNote = onSelectedNote
+            )
         }
     }
 
@@ -104,7 +110,12 @@ fun HomeScreen(
 @Composable
 fun FakeHomeScreen() {
     NotesAndMoreTheme {
-        HomeScreen(onNavigateToAddScreen = {}, onNavigateToTrashScreen = {}, notes = Constants.fakeNotes, onSelectedNote = {})
+        HomeScreen(
+            onNavigateToAddScreen = {},
+            onNavigateToTrashScreen = {},
+            notes = Constants.fakeNotes,
+            trashNotesTotal = 2,
+            onSelectedNote = {})
     }
 }
 
