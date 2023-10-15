@@ -7,6 +7,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -27,7 +30,9 @@ import com.josenromero.notesandmore.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Menu(
-    notesTotal: Int
+    notesTotal: Int,
+    onNavigateToHomeScreen: () -> Unit,
+    onNavigateToTrashScreen: () -> Unit
 ) {
 
     ModalDrawerSheet {
@@ -51,13 +56,35 @@ fun Menu(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ) {
-                Icon(painter = painterResource(id = R.drawable.note), contentDescription = "icon")
+                Icon(
+                    painter = painterResource(id = R.drawable.note),
+                    contentDescription = "note icon",
+                    modifier = Modifier.size(32.dp)
+                )
                 NavigationDrawerItem(
                     label = { Text(text = "All notes") },
                     selected = false,
-                    onClick = { },
+                    onClick = { onNavigateToHomeScreen() },
                     badge = {
                         Text(text = notesTotal.toString())
+                    }
+                )
+            }
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Delete,
+                    contentDescription = "delete icon",
+                    modifier = Modifier.size(32.dp)
+                )
+                NavigationDrawerItem(
+                    label = { Text(text = "Trash") }, 
+                    selected = false, 
+                    onClick = { onNavigateToTrashScreen() },
+                    badge = {
+                        Text(text = "0")
                     }
                 )
             }
@@ -69,11 +96,11 @@ fun Menu(
 @Preview
 @Composable
 fun MenuPreview() {
-    Menu(notesTotal = 5)
+    Menu(notesTotal = 5, onNavigateToHomeScreen = {}, onNavigateToTrashScreen = {})
 }
 
 @Preview(uiMode = UI_MODE_NIGHT_YES)
 @Composable
 fun MenuDarkPreview() {
-    Menu(notesTotal = 5)
+    Menu(notesTotal = 5, onNavigateToHomeScreen = {}, onNavigateToTrashScreen = {})
 }

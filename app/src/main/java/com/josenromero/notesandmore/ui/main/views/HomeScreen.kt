@@ -44,7 +44,13 @@ fun HomeScreen(
 
     ModalNavigationDrawer(
         drawerState = drawerState,
-        drawerContent = { Menu(notesTotal = notes.size) },
+        drawerContent = {
+            Menu(
+                notesTotal = notes.size,
+                onNavigateToHomeScreen = { scope.launch { drawerState.close() } },
+                onNavigateToTrashScreen = {}
+            )
+        },
         scrimColor = MaterialTheme.colorScheme.background
     ) {
         Scaffold(
