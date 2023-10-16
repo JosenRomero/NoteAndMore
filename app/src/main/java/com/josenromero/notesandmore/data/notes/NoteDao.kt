@@ -26,4 +26,7 @@ interface NoteDao {
     @Update
     fun updateOneNote(note: NoteEntity)
 
+    @Query("DELETE FROM ${Constants.note_table} WHERE trashed = 1")
+    fun deleteTrashedNotes()
+
 }

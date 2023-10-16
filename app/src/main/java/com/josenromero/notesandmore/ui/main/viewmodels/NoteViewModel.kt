@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.josenromero.notesandmore.data.notes.NoteEntity
 import com.josenromero.notesandmore.domain.notes.AddOneNote
 import com.josenromero.notesandmore.domain.notes.DeleteOneNote
+import com.josenromero.notesandmore.domain.notes.DeleteTrashedNotes
 import com.josenromero.notesandmore.domain.notes.GetAllNotes
 import com.josenromero.notesandmore.domain.notes.GetAllTrashedNotes
 import com.josenromero.notesandmore.domain.notes.UpdateOneNote
@@ -23,7 +24,8 @@ class NoteViewModel @Inject constructor(
     private val getAllTrashedNotes: GetAllTrashedNotes,
     private val addOneNote: AddOneNote,
     private val updateOneNote: UpdateOneNote,
-    private val deleteOneNote: DeleteOneNote
+    private val deleteOneNote: DeleteOneNote,
+    private val deleteTrashedNotes: DeleteTrashedNotes
 ) : ViewModel() {
 
     private val _notes: MutableState<List<NoteEntity>> = mutableStateOf(emptyList())
@@ -80,6 +82,13 @@ class NoteViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             deleteOneNote(note)
             collectNotes()
+        }
+    }
+
+    fun onDeleteTrashedNotes() {
+        viewModelScope.launch(Dispatchers.IO) {
+            deleteTrashedNotes()
+            collectTrashedNotes()
         }
     }
 

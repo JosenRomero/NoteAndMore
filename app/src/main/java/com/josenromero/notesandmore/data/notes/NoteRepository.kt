@@ -26,4 +26,8 @@ class NoteRepository @Inject constructor(
         noteDao.updateOneNote(note)
     }
 
+    fun deleteTrashedNotes() {
+        noteDao.deleteTrashedNotes()
+    }
+
 }
