@@ -1,9 +1,13 @@
 package com.josenromero.notesandmore.ui.main.views
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -13,11 +17,16 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.josenromero.notesandmore.data.notes.NoteEntity
 import com.josenromero.notesandmore.ui.components.EmptyNoteList
+import com.josenromero.notesandmore.ui.components.MyDialog
 import com.josenromero.notesandmore.ui.components.NoteList
 import com.josenromero.notesandmore.utils.Constants
 
@@ -26,8 +35,12 @@ import com.josenromero.notesandmore.utils.Constants
 fun TrashScreen(
     onNavigateToBack: () -> Unit,
     trashedNotes: List<NoteEntity>,
-    onSelectedtrashedNote: (note: NoteEntity) -> Unit
+    onSelectedNote: (note: NoteEntity) -> Unit,
+    deleteTrashedNotes: () -> Unit
 ) {
+
+    var menuExpanded by remember { mutableStateOf(false) }
+    var isOpenDialog by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -45,6 +58,30 @@ fun TrashScreen(
                             tint = Color.White
                         )
                     }
+                },
+                actions = {
+                    if(trashedNotes.isNotEmpty()) {
+                        IconButton(onClick = { menuExpanded = !menuExpanded }) {
+                            Icon(
+                                imageVector = Icons.Filled.MoreVert,
+                                contentDescription = "More icon",
+                                tint = Color.White
+                            )
+                        }
+                    }
+                    DropdownMenu(
+                        expanded = menuExpanded,
+                        onDismissRequest = { menuExpanded = false },
+                        modifier = Modifier.background(MaterialTheme.colorScheme.background)
+                    ) {
+                        DropdownMenuItem(
+                            text = { Text(text = "Empty trash") },
+                            onClick = {
+                                isOpenDialog = true
+                                menuExpanded = false
+                            }
+                        )
+                    }
                 }
             )
         },
@@ -54,7 +91,22 @@ fun TrashScreen(
         if(trashedNotes.isEmpty()) {
             EmptyNoteList("The notes you delete will appear here.")
         }
-        NoteList(modifier = Modifier.padding(it), notes = trashedNotes, onSelectedNote = onSelectedtrashedNote)
+
+        NoteList(modifier = Modifier.padding(it), notes = trashedNotes, onSelectedNote = onSelectedNote)
+
+        if(isOpenDialog) {
+            MyDialog(
+                onDismissRequest = { isOpenDialog = false },
+                confirm = {
+                    deleteTrashedNotes()
+                    isOpenDialog = false
+                },
+                dismiss = { isOpenDialog = false },
+                title = "Empty trash",
+                text = "Are you sure?"
+            )
+        }
+
     }
 
 }
@@ -66,6 +118,7 @@ fun TrashScreenPreview() {
     TrashScreen(
         onNavigateToBack = {},
         trashedNotes = Constants.fakeNotes,
-        onSelectedtrashedNote = {}
+        onSelectedNote = {},
+        deleteTrashedNotes = {}
     )
 }

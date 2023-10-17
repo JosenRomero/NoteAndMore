@@ -33,10 +33,10 @@ fun AppNavigation() {
         composable(route = AppScreens.HomeScreen.route) {
             HomeScreen(
                 onNavigateToAddScreen = { navController.navigate(route = AppScreens.AddScreen.route) },
-                onNavigateToTrashScreen = { navController.navigate(route = AppScreens.TrashScreen.route)},
+                onNavigateToTrashScreen = { navController.navigate(route = AppScreens.TrashScreen.route) },
                 notes = noteViewModel.notes.value,
                 trashNotesTotal = noteViewModel.trashedNotes.value.size,
-                onSelectedNote = {note ->
+                onSelectedNote = { note ->
                     noteViewModel.setSelectedNote(note)
                     navController.navigate(route = AppScreens.UpdateScreen.route)
                 }
@@ -82,11 +82,11 @@ fun AppNavigation() {
             UpdateScreen(
                 selectedNote = noteViewModel.selectedNote.value,
                 onNavigateToBack = { navController.popBackStack() },
-                updateOneNote = {note ->
+                updateOneNote = { note ->
                     noteViewModel.onUpdateOneNote(note)
                     navController.navigate(route = AppScreens.HomeScreen.route)
                 },
-                trashedOneNote = {note ->
+                trashedOneNote = { note ->
                     noteViewModel.onUpdateOneNote(NoteEntity(note.uid, note.title, note.body, 1))
                     navController.navigate(route = AppScreens.HomeScreen.route)
                 }
@@ -110,7 +110,8 @@ fun AppNavigation() {
             TrashScreen(
                 onNavigateToBack = { navController.popBackStack() },
                 trashedNotes = noteViewModel.trashedNotes.value,
-                onSelectedtrashedNote = {}
+                onSelectedNote = {},
+                deleteTrashedNotes = { noteViewModel.onDeleteTrashedNotes() }
             )
         }
     }
