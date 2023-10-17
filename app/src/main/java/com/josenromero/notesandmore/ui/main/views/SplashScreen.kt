@@ -22,6 +22,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -71,6 +72,7 @@ fun SplashScreenContent(alpha: Float) {
                 Icon(
                     painter = painterResource(id = R.drawable.note),
                     contentDescription = "Logo icon",
+                    tint = Color.White,
                     modifier = Modifier
                         .alpha(alpha)
                         .size(120.dp)
