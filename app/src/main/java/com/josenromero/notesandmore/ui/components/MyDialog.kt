@@ -1,16 +1,13 @@
 package com.josenromero.notesandmore.ui.components
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.josenromero.notesandmore.ui.theme.NotesAndMoreTheme
@@ -20,9 +17,7 @@ fun MyDialog(
     onDismissRequest: () -> Unit,
     confirm: () -> Unit,
     dismiss: () -> Unit,
-    icon: ImageVector = Icons.Filled.Warning,
-    title: String,
-    text: String
+    title: String
 ) {
 
     AlertDialog(
@@ -37,41 +32,28 @@ fun MyDialog(
                 Text(text = "No")
             }
         },
-        icon = {
-            Icon(
-                imageVector = icon,
-                contentDescription = "icon $title",
-                tint = MaterialTheme.colorScheme.error
-            )
-        },
-        title = { Text(text = title) },
-        text = {
+        title = {
             Text(
-                text = text,
+                text = title,
                 modifier = Modifier.fillMaxWidth(),
                 textAlign = TextAlign.Center
             )
         },
-        containerColor = MaterialTheme.colorScheme.surface
+        containerColor = MaterialTheme.colorScheme.background
     )
 
 }
 
+@Preview(name = "Light Mode", showSystemUi = true)
+@Preview(name = "Dark Mode", uiMode = UI_MODE_NIGHT_YES, showSystemUi = true)
 @Composable
-fun FakeMyDialog() {
+fun MyDialogPreview() {
     NotesAndMoreTheme {
         MyDialog(
             onDismissRequest = {},
             confirm = {},
             dismiss = {},
-            title = "Delete note",
-            text = "Are you sure?"
+            title = "Delete note"
         )
     }
-}
-
-@Preview
-@Composable
-fun MyDialogPreview() {
-    FakeMyDialog()
 }

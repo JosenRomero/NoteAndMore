@@ -102,8 +102,7 @@ fun TrashScreen(
                     isOpenDialog = false
                 },
                 dismiss = { isOpenDialog = false },
-                title = "Empty trash",
-                text = "Are you sure?"
+                title = "Empty trash?"
             )
         }
 

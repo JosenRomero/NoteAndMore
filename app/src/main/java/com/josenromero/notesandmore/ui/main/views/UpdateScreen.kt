@@ -132,8 +132,7 @@ fun UpdateScreen(
                             isOpenDialog = false
                         },
                         dismiss = { isOpenDialog = false },
-                        title = "Delete Note",
-                        text = "Are you sure?",
+                        title = "Delete Note?"
                     )
                 }
             }
