@@ -15,7 +15,6 @@ import com.josenromero.notesandmore.ui.main.views.RestoreScreen
 import com.josenromero.notesandmore.ui.main.views.SplashScreen
 import com.josenromero.notesandmore.ui.main.views.TrashScreen
 import com.josenromero.notesandmore.ui.main.views.UpdateScreen
-import com.josenromero.notesandmore.utils.Constants
 
 @Composable
 fun AppNavigation() {
@@ -94,36 +93,43 @@ fun AppNavigation() {
                 }
             )
         }
-        composable(
-            route = AppScreens.TrashScreen.route,
-            enterTransition = {
-                slideIntoContainer(
-                    towards = AnimatedContentTransitionScope.SlideDirection.Left,
-                    animationSpec = tween(700)
-                )
-            },
-            exitTransition = {
-                slideOutOfContainer(
-                    towards = AnimatedContentTransitionScope.SlideDirection.Right,
-                    animationSpec = tween(700)
-                )
-            }
-        ) {
+        composable(route = AppScreens.TrashScreen.route) {
             TrashScreen(
                 onNavigateToBack = { navController.popBackStack() },
                 trashedNotes = noteViewModel.trashedNotes.value,
                 onSelectedNote = {note ->
+                    noteViewModel.setSelectedNote(note)
                     navController.navigate(route = AppScreens.RestoreScreen.route)
                 },
                 deleteTrashedNotes = { noteViewModel.onDeleteTrashedNotes() }
             )
         }
-        composable(route = AppScreens.RestoreScreen.route) {
+        composable(
+            route = AppScreens.RestoreScreen.route,
+            enterTransition = {
+                slideIntoContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Up,
+                    animationSpec = tween(700)
+                )
+            },
+            exitTransition = {
+                slideOutOfContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Down,
+                    animationSpec = tween(700)
+                )
+            }
+        ) {
             RestoreScreen(
-                selectedNote = Constants.fakeNotes[0],
+                selectedNote = noteViewModel.selectedNote.value,
                 onNavigateToBack = { navController.popBackStack() },
-                restoreOneNote = {},
-                deleteOneNote = {}
+                restoreOneNote = {note ->
+                    noteViewModel.onUpdateOneNote(NoteEntity(note.uid, note.title, note.body, 0))
+                    navController.popBackStack()
+                },
+                deleteOneNote = {note ->
+                    noteViewModel.onDeleteOneNote(note)
+                    navController.popBackStack()
+                }
             )
         }
     }

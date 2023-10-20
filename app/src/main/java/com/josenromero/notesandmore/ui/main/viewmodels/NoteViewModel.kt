@@ -81,7 +81,7 @@ class NoteViewModel @Inject constructor(
     fun onDeleteOneNote(note: NoteEntity) {
         viewModelScope.launch(Dispatchers.IO) {
             deleteOneNote(note)
-            collectNotes()
+            collectTrashedNotes()
         }
     }
 

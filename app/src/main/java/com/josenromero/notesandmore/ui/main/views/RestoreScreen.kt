@@ -50,11 +50,10 @@ fun RestoreScreen(
                 navigationIcon = {
                     IconButton(onClick = { onNavigateToBack() }) {
                         Icon(
-                            imageVector = Icons.Filled.Close, 
+                            imageVector = Icons.Filled.Close,
                             contentDescription = "Back icon",
                             tint = Color.White
                         )
-                        
                     }
                 }
             )
@@ -85,7 +84,7 @@ fun RestoreScreen(
                     Spacer(modifier = Modifier.width(10.dp))
                     OutlinedButton(
                         modifier = Modifier.weight(1f),
-                        onClick = {  }
+                        onClick = { deleteOneNote(selectedNote) }
                     ) {
                         Text(text = "Delete")
                     }
