@@ -11,9 +11,11 @@ import com.josenromero.notesandmore.data.notes.NoteEntity
 import com.josenromero.notesandmore.ui.main.viewmodels.NoteViewModel
 import com.josenromero.notesandmore.ui.main.views.AddScreen
 import com.josenromero.notesandmore.ui.main.views.HomeScreen
+import com.josenromero.notesandmore.ui.main.views.RestoreScreen
 import com.josenromero.notesandmore.ui.main.views.SplashScreen
 import com.josenromero.notesandmore.ui.main.views.TrashScreen
 import com.josenromero.notesandmore.ui.main.views.UpdateScreen
+import com.josenromero.notesandmore.utils.Constants
 
 @Composable
 fun AppNavigation() {
@@ -110,8 +112,18 @@ fun AppNavigation() {
             TrashScreen(
                 onNavigateToBack = { navController.popBackStack() },
                 trashedNotes = noteViewModel.trashedNotes.value,
-                onSelectedNote = {},
+                onSelectedNote = {note ->
+                    navController.navigate(route = AppScreens.RestoreScreen.route)
+                },
                 deleteTrashedNotes = { noteViewModel.onDeleteTrashedNotes() }
+            )
+        }
+        composable(route = AppScreens.RestoreScreen.route) {
+            RestoreScreen(
+                selectedNote = Constants.fakeNotes[0],
+                onNavigateToBack = { navController.popBackStack() },
+                restoreOneNote = {},
+                deleteOneNote = {}
             )
         }
     }
