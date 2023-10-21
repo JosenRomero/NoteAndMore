@@ -27,6 +27,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.josenromero.notesandmore.R
+import com.josenromero.notesandmore.ui.theme.NotesAndMoreTheme
 import kotlinx.coroutines.delay
 
 @Composable
@@ -83,14 +84,11 @@ fun SplashScreenContent(alpha: Float) {
 
 }
 
-@Preview
-@Composable
-fun SplashScreenPreview() {
-    SplashScreenContent(alpha = 1f)
-}
-
-@Preview(uiMode = UI_MODE_NIGHT_YES)
+@Preview(name = "Light Mode")
+@Preview(name = "Dark Mode", uiMode = UI_MODE_NIGHT_YES)
 @Composable
 fun SplashScreenDarkPreview() {
-    SplashScreenContent(alpha = 1f)
+    NotesAndMoreTheme {
+        SplashScreenContent(alpha = 1f)
+    }
 }

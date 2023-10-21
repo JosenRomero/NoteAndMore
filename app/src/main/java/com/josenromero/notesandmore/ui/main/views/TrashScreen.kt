@@ -1,5 +1,6 @@
 package com.josenromero.notesandmore.ui.main.views
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -28,6 +29,7 @@ import com.josenromero.notesandmore.data.notes.NoteEntity
 import com.josenromero.notesandmore.ui.components.EmptyNoteList
 import com.josenromero.notesandmore.ui.components.MyDialog
 import com.josenromero.notesandmore.ui.components.NoteList
+import com.josenromero.notesandmore.ui.theme.NotesAndMoreTheme
 import com.josenromero.notesandmore.utils.Constants
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -111,13 +113,16 @@ fun TrashScreen(
 }
 
 
-@Preview
+@Preview(name = "Light Mode")
+@Preview(name = "Dark Mode", uiMode = UI_MODE_NIGHT_YES)
 @Composable
 fun TrashScreenPreview() {
-    TrashScreen(
-        onNavigateToBack = {},
-        trashedNotes = Constants.fakeNotes,
-        onSelectedNote = {},
-        deleteTrashedNotes = {}
-    )
+    NotesAndMoreTheme {
+        TrashScreen(
+            onNavigateToBack = {},
+            trashedNotes = Constants.fakeNotes,
+            onSelectedNote = {},
+            deleteTrashedNotes = {}
+        )
+    }
 }

@@ -36,15 +36,10 @@ fun NoteList(
     }
 }
 
+@Preview(name = "Light Mode", showSystemUi = true)
 @Composable
-fun FakeNoteList() {
+fun NoteListPreview() {
     NotesAndMoreTheme {
         NoteList(notes = Constants.fakeNotes, onSelectedNote = {})
     }
-}
-
-@Preview
-@Composable
-fun NoteListPreview() {
-    FakeNoteList()
 }

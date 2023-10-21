@@ -1,5 +1,6 @@
 package com.josenromero.notesandmore.ui.main.views
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -141,19 +142,16 @@ fun UpdateScreen(
 
 }
 
+@Preview(name = "Light Mode")
+@Preview(name = "Dark Mode", uiMode = UI_MODE_NIGHT_YES)
 @Composable
-fun FakeUpdateScreen() {
+fun UpdateScreenPreview() {
     NotesAndMoreTheme {
         UpdateScreen(
             selectedNote = Constants.fakeNotes[0],
             onNavigateToBack = {},
             updateOneNote = {},
-            trashedOneNote = {})
+            trashedOneNote = {}
+        )
     }
-}
-
-@Preview
-@Composable
-fun UpdateScreenPreview() {
-    FakeUpdateScreen()
 }

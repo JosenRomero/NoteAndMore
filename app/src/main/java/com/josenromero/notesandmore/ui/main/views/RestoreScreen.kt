@@ -29,6 +29,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.josenromero.notesandmore.data.notes.NoteEntity
+import com.josenromero.notesandmore.ui.theme.NotesAndMoreTheme
 import com.josenromero.notesandmore.utils.Constants
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -110,24 +111,16 @@ fun RestoreScreen(
     }
 }
 
-@Preview
+@Preview(name = "Light Mode")
+@Preview(name = "Dark Mode", uiMode = UI_MODE_NIGHT_YES)
 @Composable
 fun RestoreScreenPreview() {
-    RestoreScreen(
-        selectedNote = Constants.fakeNotes[0],
-        onNavigateToBack = {},
-        restoreOneNote = {},
-        deleteOneNote = {}
-    )
-}
-
-@Preview(uiMode = UI_MODE_NIGHT_YES)
-@Composable
-fun RestoreScreenDarkPreview() {
-    RestoreScreen(
-        selectedNote = Constants.fakeNotes[0],
-        onNavigateToBack = {},
-        restoreOneNote = {},
-        deleteOneNote = {}
-    )
+    NotesAndMoreTheme {
+        RestoreScreen(
+            selectedNote = Constants.fakeNotes[0],
+            onNavigateToBack = {},
+            restoreOneNote = {},
+            deleteOneNote = {}
+        )
+    }
 }

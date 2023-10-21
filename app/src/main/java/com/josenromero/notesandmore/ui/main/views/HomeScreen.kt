@@ -1,5 +1,6 @@
 package com.josenromero.notesandmore.ui.main.views
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -107,8 +108,10 @@ fun HomeScreen(
 
 }
 
+@Preview(name = "Light Mode")
+@Preview(name = "Dark Mode", uiMode = UI_MODE_NIGHT_YES)
 @Composable
-fun FakeHomeScreen() {
+fun HomeScreenPreview() {
     NotesAndMoreTheme {
         HomeScreen(
             onNavigateToAddScreen = {},
@@ -117,10 +120,4 @@ fun FakeHomeScreen() {
             trashNotesTotal = 2,
             onSelectedNote = {})
     }
-}
-
-@Preview
-@Composable
-fun HomeScreenPreview() {
-    FakeHomeScreen()
 }

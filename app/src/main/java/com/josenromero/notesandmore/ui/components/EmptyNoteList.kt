@@ -44,15 +44,10 @@ fun EmptyNoteList(
 
 }
 
+@Preview(name = "Light Mode", showSystemUi = true)
 @Composable
-fun FakeEmptyNoteList() {
+fun EmptyNoteListPreview() {
     NotesAndMoreTheme {
         EmptyNoteList("The notes you add will appear here.")
     }
-}
-
-@Preview
-@Composable
-fun EmptyNoteListPreview() {
-    FakeEmptyNoteList()
 }

@@ -1,5 +1,6 @@
 package com.josenromero.notesandmore.ui.components
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -47,15 +48,11 @@ fun NoteCard(
     }
 }
 
+@Preview(name = "Light Mode")
+@Preview(name = "Dark Mode", uiMode = UI_MODE_NIGHT_YES)
 @Composable
-fun FakeNoteCard() {
+fun NoteCardPreview() {
     NotesAndMoreTheme {
         NoteCard(note = Constants.fakeNotes[0], onSelectedNote = {})
     }
-}
-
-@Preview
-@Composable
-fun NoteCardPreview() {
-    FakeNoteCard()
 }

@@ -26,6 +26,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.josenromero.notesandmore.R
+import com.josenromero.notesandmore.ui.theme.NotesAndMoreTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -94,22 +95,16 @@ fun Menu(
 
 }
 
-@Preview
+@Preview(name = "Light Mode", showSystemUi = true)
+@Preview(name = "Dark Mode", uiMode = UI_MODE_NIGHT_YES, showSystemUi = true)
 @Composable
 fun MenuPreview() {
-    Menu(
-        notesTotal = 5,
-        trashNotesTotal = 2,
-        onNavigateToHomeScreen = {},
-        onNavigateToTrashScreen = {})
-}
-
-@Preview(uiMode = UI_MODE_NIGHT_YES)
-@Composable
-fun MenuDarkPreview() {
-    Menu(
-        notesTotal = 5,
-        trashNotesTotal = 2,
-        onNavigateToHomeScreen = {},
-        onNavigateToTrashScreen = {})
+    NotesAndMoreTheme {
+        Menu(
+            notesTotal = 5,
+            trashNotesTotal = 2,
+            onNavigateToHomeScreen = {},
+            onNavigateToTrashScreen = {}
+        )
+    }
 }
