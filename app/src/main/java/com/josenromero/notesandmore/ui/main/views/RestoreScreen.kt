@@ -24,11 +24,16 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.josenromero.notesandmore.data.notes.NoteEntity
+import com.josenromero.notesandmore.ui.components.MyDialog
 import com.josenromero.notesandmore.ui.theme.NotesAndMoreTheme
 import com.josenromero.notesandmore.utils.Constants
 
@@ -40,6 +45,9 @@ fun RestoreScreen(
     restoreOneNote: (note: NoteEntity) -> Unit,
     deleteOneNote: (note: NoteEntity) -> Unit
 ) {
+
+    var isOpenDialog by remember { mutableStateOf(false) }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -85,7 +93,7 @@ fun RestoreScreen(
                     Spacer(modifier = Modifier.width(10.dp))
                     OutlinedButton(
                         modifier = Modifier.weight(1f),
-                        onClick = { deleteOneNote(selectedNote) }
+                        onClick = { isOpenDialog = true }
                     ) {
                         Text(text = "Delete")
                     }
@@ -106,6 +114,17 @@ fun RestoreScreen(
                     onValueChange = {},
                     label = { Text(text = "Body") }
                 )
+                if(isOpenDialog) {
+                    MyDialog(
+                        onDismissRequest = { isOpenDialog = false },
+                        confirm = {
+                            deleteOneNote(selectedNote)
+                            isOpenDialog = false
+                        },
+                        dismiss = { isOpenDialog = false },
+                        title = "Delete Note?"
+                    )
+                }
             }
         }
     }
