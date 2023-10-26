@@ -1,7 +1,6 @@
 package com.josenromero.notesandmore.ui.components
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -54,42 +53,32 @@ fun Menu(
                 )
             }
             Divider()
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.note),
-                    contentDescription = "note icon",
-                    modifier = Modifier.size(32.dp)
-                )
-                NavigationDrawerItem(
-                    label = { Text(text = "All notes") },
-                    selected = false,
-                    onClick = { onNavigateToHomeScreen() },
-                    badge = {
-                        Text(text = notesTotal.toString())
-                    }
-                )
-            }
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Icon(
-                    imageVector = Icons.Filled.Delete,
-                    contentDescription = "delete icon",
-                    modifier = Modifier.size(32.dp)
-                )
-                NavigationDrawerItem(
-                    label = { Text(text = "Trash") },
-                    selected = false,
-                    onClick = { onNavigateToTrashScreen() },
-                    badge = {
-                        Text(text = trashNotesTotal.toString())
-                    }
-                )
-            }
+            NavigationDrawerItem(
+                label = { Text(text = "All notes") },
+                selected = false,
+                onClick = { onNavigateToHomeScreen() },
+                icon = {
+                    Icon(
+                        painter = painterResource(id = R.drawable.note),
+                        contentDescription = "note icon",
+                        modifier = Modifier.size(32.dp)
+                    )
+                },
+                badge = { Text(text = notesTotal.toString()) }
+            )
+            NavigationDrawerItem(
+                label = { Text(text = "Trash") },
+                selected = false,
+                onClick = { onNavigateToTrashScreen() },
+                icon = {
+                    Icon(
+                        imageVector = Icons.Filled.Delete,
+                        contentDescription = "delete icon",
+                        modifier = Modifier.size(32.dp)
+                    )
+                },
+                badge = { Text(text = trashNotesTotal.toString()) }
+            )
         }
     }
 
