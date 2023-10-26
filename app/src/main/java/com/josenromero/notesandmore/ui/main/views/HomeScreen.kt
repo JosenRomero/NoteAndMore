@@ -21,7 +21,6 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.josenromero.notesandmore.data.notes.NoteEntity
 import com.josenromero.notesandmore.ui.components.EmptyNoteList
@@ -71,8 +70,8 @@ fun HomeScreen(
             topBar = {
                 TopAppBar(
                     colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                        containerColor = MaterialTheme.colorScheme.primary,
-                        titleContentColor = Color.White
+                        containerColor = MaterialTheme.colorScheme.background,
+                        titleContentColor = MaterialTheme.colorScheme.onBackground
                     ),
                     title = { Text(text = "My notes") },
                     navigationIcon = {
@@ -88,7 +87,7 @@ fun HomeScreen(
                             Icon(
                                 imageVector = Icons.Filled.Menu,
                                 contentDescription = "Toggle drawer",
-                                tint = Color.White
+                                tint = MaterialTheme.colorScheme.onBackground
                             )
                         }
                     }

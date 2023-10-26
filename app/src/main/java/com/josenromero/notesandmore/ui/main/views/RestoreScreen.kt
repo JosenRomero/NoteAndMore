@@ -29,7 +29,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.josenromero.notesandmore.data.notes.NoteEntity
@@ -52,8 +51,8 @@ fun RestoreScreen(
         topBar = {
             TopAppBar(
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primary,
-                    titleContentColor = Color.White
+                    containerColor = MaterialTheme.colorScheme.background,
+                    titleContentColor = MaterialTheme.colorScheme.onBackground
                 ),
                 title = { Text(text = "Trash note") },
                 navigationIcon = {
@@ -61,7 +60,7 @@ fun RestoreScreen(
                         Icon(
                             imageVector = Icons.Filled.Close,
                             contentDescription = "Back icon",
-                            tint = Color.White
+                            tint = MaterialTheme.colorScheme.onBackground
                         )
                     }
                 }

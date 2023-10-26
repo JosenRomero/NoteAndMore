@@ -57,7 +57,7 @@ fun SplashScreen(
 fun SplashScreenContent(alpha: Float) {
 
     Scaffold(
-        containerColor = MaterialTheme.colorScheme.background
+        containerColor = MaterialTheme.colorScheme.scrim
     ) {
         Box(
             modifier = Modifier

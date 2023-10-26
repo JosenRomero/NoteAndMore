@@ -28,7 +28,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.josenromero.notesandmore.data.notes.NoteEntity
@@ -54,8 +53,8 @@ fun UpdateScreen(
         topBar = {
             TopAppBar(
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primary,
-                    titleContentColor = Color.White
+                    containerColor = MaterialTheme.colorScheme.background,
+                    titleContentColor = MaterialTheme.colorScheme.onBackground
                 ),
                 title = { Text(text = "Update a note") },
                 navigationIcon = {
@@ -63,7 +62,7 @@ fun UpdateScreen(
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
                             contentDescription = "Back",
-                            tint = Color.White
+                            tint = MaterialTheme.colorScheme.onBackground
                         )
                     }
                 },
@@ -72,7 +71,7 @@ fun UpdateScreen(
                         Icon(
                             imageVector = Icons.Filled.Delete,
                             contentDescription = "Delete",
-                            tint = Color.White
+                            tint = MaterialTheme.colorScheme.onBackground
                         )
                     }
                     IconButton(onClick = {
@@ -82,7 +81,7 @@ fun UpdateScreen(
                         Icon(
                             imageVector = Icons.Filled.Done,
                             contentDescription = "Update",
-                            tint = Color.White
+                            tint = MaterialTheme.colorScheme.onBackground
                         )
                     }
                 }

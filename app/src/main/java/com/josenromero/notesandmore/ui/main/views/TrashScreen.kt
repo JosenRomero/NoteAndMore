@@ -23,7 +23,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.josenromero.notesandmore.data.notes.NoteEntity
 import com.josenromero.notesandmore.ui.components.EmptyNoteList
@@ -48,8 +47,8 @@ fun TrashScreen(
         topBar = {
             TopAppBar(
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primary,
-                    titleContentColor = Color.White
+                    containerColor = MaterialTheme.colorScheme.background,
+                    titleContentColor = MaterialTheme.colorScheme.onBackground
                 ),
                 title = { Text(text = "Trash") },
                 navigationIcon = {
@@ -57,7 +56,7 @@ fun TrashScreen(
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
                             contentDescription = "Back",
-                            tint = Color.White
+                            tint = MaterialTheme.colorScheme.onBackground
                         )
                     }
                 },
@@ -67,14 +66,14 @@ fun TrashScreen(
                             Icon(
                                 imageVector = Icons.Filled.MoreVert,
                                 contentDescription = "More icon",
-                                tint = Color.White
+                                tint = MaterialTheme.colorScheme.onBackground
                             )
                         }
                     }
                     DropdownMenu(
                         expanded = menuExpanded,
                         onDismissRequest = { menuExpanded = false },
-                        modifier = Modifier.background(MaterialTheme.colorScheme.background)
+                        modifier = Modifier.background(MaterialTheme.colorScheme.tertiaryContainer)
                     ) {
                         DropdownMenuItem(
                             text = { Text(text = "Empty trash") },
