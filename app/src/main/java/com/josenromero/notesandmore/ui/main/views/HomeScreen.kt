@@ -35,6 +35,7 @@ import kotlinx.coroutines.launch
 fun HomeScreen(
     onNavigateToAddScreen: () -> Unit,
     onNavigateToTrashScreen: () -> Unit,
+    onNavigateToAboutScreen: () -> Unit,
     notes: List<NoteEntity>,
     trashNotesTotal: Int,
     onSelectedNote: (note: NoteEntity) -> Unit
@@ -51,7 +52,8 @@ fun HomeScreen(
                 notesTotal = notes.size,
                 trashNotesTotal = trashNotesTotal,
                 onNavigateToHomeScreen = { scope.launch { drawerState.close() } },
-                onNavigateToTrashScreen = { onNavigateToTrashScreen() }
+                onNavigateToTrashScreen = { onNavigateToTrashScreen() },
+                onNavigateToAboutScreen = { onNavigateToAboutScreen() }
             )
         },
         scrimColor = MaterialTheme.colorScheme.background
@@ -115,8 +117,10 @@ fun HomeScreenPreview() {
         HomeScreen(
             onNavigateToAddScreen = {},
             onNavigateToTrashScreen = {},
+            onNavigateToAboutScreen = {},
             notes = Constants.fakeNotes,
             trashNotesTotal = 2,
-            onSelectedNote = {})
+            onSelectedNote = {}
+        )
     }
 }

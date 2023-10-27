@@ -7,4 +7,5 @@ sealed class AppScreens(val route: String) {
     object UpdateScreen: AppScreens("UpdateScreen")
     object TrashScreen: AppScreens("TrashScreen")
     object RestoreScreen: AppScreens("RestoreScreen")
+    object AboutScreen: AppScreens("AboutScreen")
 }

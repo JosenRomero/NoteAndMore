@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -33,7 +34,8 @@ fun Menu(
     notesTotal: Int,
     trashNotesTotal: Int,
     onNavigateToHomeScreen: () -> Unit,
-    onNavigateToTrashScreen: () -> Unit
+    onNavigateToTrashScreen: () -> Unit,
+    onNavigateToAboutScreen: () -> Unit
 ) {
 
     ModalDrawerSheet {
@@ -79,6 +81,18 @@ fun Menu(
                 },
                 badge = { Text(text = trashNotesTotal.toString()) }
             )
+            NavigationDrawerItem(
+                label = { Text(text = "About") },
+                selected = false,
+                onClick = { onNavigateToAboutScreen() },
+                icon = {
+                    Icon(
+                        imageVector = Icons.Filled.Info,
+                        contentDescription = "about icon",
+                        modifier = Modifier.size(32.dp)
+                    )
+                }
+            )
         }
     }
 
@@ -93,7 +107,8 @@ fun MenuPreview() {
             notesTotal = 5,
             trashNotesTotal = 2,
             onNavigateToHomeScreen = {},
-            onNavigateToTrashScreen = {}
+            onNavigateToTrashScreen = {},
+            onNavigateToAboutScreen = {}
         )
     }
 }
