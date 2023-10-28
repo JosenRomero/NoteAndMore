@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -35,7 +36,8 @@ fun Menu(
     trashNotesTotal: Int,
     onNavigateToHomeScreen: () -> Unit,
     onNavigateToTrashScreen: () -> Unit,
-    onNavigateToAboutScreen: () -> Unit
+    onNavigateToAboutScreen: () -> Unit,
+    onNavigateToSettingsScreen: () -> Unit
 ) {
 
     ModalDrawerSheet {
@@ -54,7 +56,7 @@ fun Menu(
                     style = MaterialTheme.typography.headlineLarge
                 )
             }
-            Divider()
+            Divider(modifier = Modifier.padding(vertical = 30.dp))
             NavigationDrawerItem(
                 label = { Text(text = "All notes") },
                 selected = false,
@@ -80,6 +82,19 @@ fun Menu(
                     )
                 },
                 badge = { Text(text = trashNotesTotal.toString()) }
+            )
+            Divider(modifier = Modifier.padding(vertical = 30.dp))
+            NavigationDrawerItem(
+                label = { Text(text = "Settings") },
+                selected = false,
+                onClick = { onNavigateToSettingsScreen() },
+                icon = {
+                    Icon(
+                        imageVector = Icons.Filled.Settings,
+                        contentDescription = "settings icon",
+                        modifier = Modifier.size(32.dp)
+                    )
+                }
             )
             NavigationDrawerItem(
                 label = { Text(text = "About") },
@@ -108,7 +123,8 @@ fun MenuPreview() {
             trashNotesTotal = 2,
             onNavigateToHomeScreen = {},
             onNavigateToTrashScreen = {},
-            onNavigateToAboutScreen = {}
+            onNavigateToAboutScreen = {},
+            onNavigateToSettingsScreen = {}
         )
     }
 }

@@ -36,6 +36,7 @@ fun HomeScreen(
     onNavigateToAddScreen: () -> Unit,
     onNavigateToTrashScreen: () -> Unit,
     onNavigateToAboutScreen: () -> Unit,
+    onNavigateToSettingsScreen: () -> Unit,
     notes: List<NoteEntity>,
     trashNotesTotal: Int,
     onSelectedNote: (note: NoteEntity) -> Unit
@@ -53,7 +54,8 @@ fun HomeScreen(
                 trashNotesTotal = trashNotesTotal,
                 onNavigateToHomeScreen = { scope.launch { drawerState.close() } },
                 onNavigateToTrashScreen = { onNavigateToTrashScreen() },
-                onNavigateToAboutScreen = { onNavigateToAboutScreen() }
+                onNavigateToAboutScreen = { onNavigateToAboutScreen() },
+                onNavigateToSettingsScreen = { onNavigateToSettingsScreen() }
             )
         },
         scrimColor = MaterialTheme.colorScheme.background
@@ -118,6 +120,7 @@ fun HomeScreenPreview() {
             onNavigateToAddScreen = {},
             onNavigateToTrashScreen = {},
             onNavigateToAboutScreen = {},
+            onNavigateToSettingsScreen = {},
             notes = Constants.fakeNotes,
             trashNotesTotal = 2,
             onSelectedNote = {}
