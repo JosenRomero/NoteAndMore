@@ -35,10 +35,7 @@ fun AppNavigation() {
         }
         composable(route = AppScreens.HomeScreen.route) {
             HomeScreen(
-                onNavigateToAddScreen = { navController.navigate(route = AppScreens.AddScreen.route) },
-                onNavigateToTrashScreen = { navController.navigate(route = AppScreens.TrashScreen.route) },
-                onNavigateToAboutScreen = { navController.navigate(route = AppScreens.AboutScreen.route)},
-                onNavigateToSettingsScreen = { navController.navigate(route = AppScreens.SettingsScreen.route)},
+                onNavigateToAScreen = { route -> navController.navigate(route) },
                 notes = noteViewModel.notes.value,
                 trashNotesTotal = noteViewModel.trashedNotes.value.size,
                 onSelectedNote = { note ->

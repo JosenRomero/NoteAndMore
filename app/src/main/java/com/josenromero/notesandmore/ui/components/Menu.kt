@@ -27,6 +27,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.josenromero.notesandmore.R
+import com.josenromero.notesandmore.ui.main.navigation.AppScreens
 import com.josenromero.notesandmore.ui.theme.NotesAndMoreTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -35,9 +36,7 @@ fun Menu(
     notesTotal: Int,
     trashNotesTotal: Int,
     onNavigateToHomeScreen: () -> Unit,
-    onNavigateToTrashScreen: () -> Unit,
-    onNavigateToAboutScreen: () -> Unit,
-    onNavigateToSettingsScreen: () -> Unit
+    onNavigateToAScreen: (route: String) -> Unit,
 ) {
 
     ModalDrawerSheet {
@@ -73,7 +72,7 @@ fun Menu(
             NavigationDrawerItem(
                 label = { Text(text = "Trash") },
                 selected = false,
-                onClick = { onNavigateToTrashScreen() },
+                onClick = { onNavigateToAScreen(AppScreens.TrashScreen.route) },
                 icon = {
                     Icon(
                         imageVector = Icons.Filled.Delete,
@@ -87,7 +86,7 @@ fun Menu(
             NavigationDrawerItem(
                 label = { Text(text = "Settings") },
                 selected = false,
-                onClick = { onNavigateToSettingsScreen() },
+                onClick = { onNavigateToAScreen(AppScreens.SettingsScreen.route) },
                 icon = {
                     Icon(
                         imageVector = Icons.Filled.Settings,
@@ -99,7 +98,7 @@ fun Menu(
             NavigationDrawerItem(
                 label = { Text(text = "About") },
                 selected = false,
-                onClick = { onNavigateToAboutScreen() },
+                onClick = { onNavigateToAScreen(AppScreens.AboutScreen.route) },
                 icon = {
                     Icon(
                         imageVector = Icons.Filled.Info,
@@ -122,9 +121,7 @@ fun MenuPreview() {
             notesTotal = 5,
             trashNotesTotal = 2,
             onNavigateToHomeScreen = {},
-            onNavigateToTrashScreen = {},
-            onNavigateToAboutScreen = {},
-            onNavigateToSettingsScreen = {}
+            onNavigateToAScreen = {}
         )
     }
 }

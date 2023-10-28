@@ -26,6 +26,7 @@ import com.josenromero.notesandmore.data.notes.NoteEntity
 import com.josenromero.notesandmore.ui.components.EmptyNoteList
 import com.josenromero.notesandmore.ui.components.Menu
 import com.josenromero.notesandmore.ui.components.NoteList
+import com.josenromero.notesandmore.ui.main.navigation.AppScreens
 import com.josenromero.notesandmore.ui.theme.NotesAndMoreTheme
 import com.josenromero.notesandmore.utils.Constants
 import kotlinx.coroutines.launch
@@ -33,10 +34,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    onNavigateToAddScreen: () -> Unit,
-    onNavigateToTrashScreen: () -> Unit,
-    onNavigateToAboutScreen: () -> Unit,
-    onNavigateToSettingsScreen: () -> Unit,
+    onNavigateToAScreen: (route: String) -> Unit,
     notes: List<NoteEntity>,
     trashNotesTotal: Int,
     onSelectedNote: (note: NoteEntity) -> Unit
@@ -53,9 +51,7 @@ fun HomeScreen(
                 notesTotal = notes.size,
                 trashNotesTotal = trashNotesTotal,
                 onNavigateToHomeScreen = { scope.launch { drawerState.close() } },
-                onNavigateToTrashScreen = { onNavigateToTrashScreen() },
-                onNavigateToAboutScreen = { onNavigateToAboutScreen() },
-                onNavigateToSettingsScreen = { onNavigateToSettingsScreen() }
+                onNavigateToAScreen = {route -> onNavigateToAScreen(route) }
             )
         },
         scrimColor = MaterialTheme.colorScheme.background
@@ -67,7 +63,7 @@ fun HomeScreen(
                 ExtendedFloatingActionButton(
                     text = { Text(text = "Add") },
                     icon = { Icon(imageVector = Icons.Filled.Add, contentDescription = "Add") },
-                    onClick = { onNavigateToAddScreen() },
+                    onClick = { onNavigateToAScreen(AppScreens.AddScreen.route) },
                     containerColor = MaterialTheme.colorScheme.primary
                 )
             },
@@ -117,10 +113,7 @@ fun HomeScreen(
 fun HomeScreenPreview() {
     NotesAndMoreTheme {
         HomeScreen(
-            onNavigateToAddScreen = {},
-            onNavigateToTrashScreen = {},
-            onNavigateToAboutScreen = {},
-            onNavigateToSettingsScreen = {},
+            onNavigateToAScreen = {},
             notes = Constants.fakeNotes,
             trashNotesTotal = 2,
             onSelectedNote = {}
