@@ -37,6 +37,9 @@ class NoteViewModel @Inject constructor(
     private val _selectedNote: MutableState<NoteEntity> = mutableStateOf(NoteEntity())
     val selectedNote: State<NoteEntity> get() = _selectedNote
 
+    private val _darkTheme: MutableState<Boolean> = mutableStateOf(false)
+    val darkTheme: State<Boolean> get() = _darkTheme
+
     init {
         collectNotes()
         collectTrashedNotes()
@@ -94,6 +97,10 @@ class NoteViewModel @Inject constructor(
 
     fun setSelectedNote(note: NoteEntity) {
         _selectedNote.value = note
+    }
+
+    fun setDarkTheme(value: Boolean) {
+        _darkTheme.value = value
     }
 
 }
