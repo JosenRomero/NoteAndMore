@@ -83,6 +83,9 @@ dependencies {
     val navVersion = "2.7.3"
     implementation("androidx.navigation:navigation-compose:$navVersion")
 
+    // DataStore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
 }
 
 kapt {

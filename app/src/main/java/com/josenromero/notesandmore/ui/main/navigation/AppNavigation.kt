@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.josenromero.notesandmore.data.notes.NoteEntity
 import com.josenromero.notesandmore.ui.main.viewmodels.NoteViewModel
+import com.josenromero.notesandmore.ui.main.viewmodels.PreferencesViewModel
 import com.josenromero.notesandmore.ui.main.views.AboutScreen
 import com.josenromero.notesandmore.ui.main.views.AddScreen
 import com.josenromero.notesandmore.ui.main.views.HomeScreen
@@ -24,9 +25,10 @@ fun AppNavigation() {
 
     val navController = rememberNavController()
     val noteViewModel: NoteViewModel = hiltViewModel()
+    val preferencesViewModel: PreferencesViewModel = hiltViewModel()
 
     NotesAndMoreTheme(
-        darkTheme = noteViewModel.darkTheme.value
+        darkTheme = preferencesViewModel.darkTheme.value
     ) {
         NavHost(navController = navController, startDestination = AppScreens.SplashScreen.route) {
             composable(route = AppScreens.SplashScreen.route) {
@@ -174,9 +176,9 @@ fun AppNavigation() {
                 SettingsScreen(
                     onNavigateToBack = { navController.popBackStack() },
                     setDarkTheme = {value ->
-                        noteViewModel.setDarkTheme(value)
+                        preferencesViewModel.setDarkThemeValue(value)
                     },
-                    darkTheme = noteViewModel.darkTheme.value
+                    darkTheme = preferencesViewModel.darkTheme.value
                 )
             }
         }

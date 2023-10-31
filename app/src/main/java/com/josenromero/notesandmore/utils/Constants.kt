@@ -3,6 +3,8 @@ package com.josenromero.notesandmore.utils
 import com.josenromero.notesandmore.data.notes.NoteEntity
 
 object Constants {
+    const val PREFERENCESKEY_darkTheme= "key_darkTheme"
+    const val PREFERENCES_DATASTORE = "user_data"
     const val note_database = "note_database"
     const val note_table = "note_table"
 
