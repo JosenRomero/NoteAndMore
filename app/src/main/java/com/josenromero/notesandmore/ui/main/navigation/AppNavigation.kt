@@ -13,6 +13,7 @@ import com.josenromero.notesandmore.ui.main.viewmodels.PreferencesViewModel
 import com.josenromero.notesandmore.ui.main.views.AboutScreen
 import com.josenromero.notesandmore.ui.main.views.AddScreen
 import com.josenromero.notesandmore.ui.main.views.HomeScreen
+import com.josenromero.notesandmore.ui.main.views.LanguageScreen
 import com.josenromero.notesandmore.ui.main.views.RestoreScreen
 import com.josenromero.notesandmore.ui.main.views.SettingsScreen
 import com.josenromero.notesandmore.ui.main.views.SplashScreen
@@ -168,6 +169,18 @@ fun AppNavigation() {
                 },
                 exitTransition = {
                     slideOutOfContainer(
+                        towards = AnimatedContentTransitionScope.SlideDirection.Left,
+                        animationSpec = tween(700)
+                    )
+                },
+                popEnterTransition = {
+                    slideIntoContainer(
+                        towards = AnimatedContentTransitionScope.SlideDirection.Right,
+                        animationSpec = tween(700)
+                    )
+                },
+                popExitTransition = {
+                    slideOutOfContainer(
                         towards = AnimatedContentTransitionScope.SlideDirection.Right,
                         animationSpec = tween(700)
                     )
@@ -175,10 +188,16 @@ fun AppNavigation() {
             ) {
                 SettingsScreen(
                     onNavigateToBack = { navController.popBackStack() },
+                    onNavigateToAScreen = { route -> navController.navigate(route) },
                     setDarkTheme = {value ->
                         preferencesViewModel.setDarkThemeValue(value)
                     },
                     darkTheme = preferencesViewModel.darkTheme.value
+                )
+            }
+            composable(route = AppScreens.LanguageScreen.route) {
+                LanguageScreen(
+                    onNavigateToBack = { navController.popBackStack() }
                 )
             }
         }
