@@ -11,10 +11,12 @@ android {
 
     defaultConfig {
         applicationId = "com.josenromero.notesandmore"
-        minSdk = 21
-        targetSdk = 33
+        minSdk = 24
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+
+        resourceConfigurations += listOf("en", "es") // add the locale tags
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -68,6 +70,8 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    implementation("androidx.appcompat:appcompat:1.6.1")
 
     // Room Database
     val roomVersion = "2.5.2"
