@@ -29,8 +29,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.josenromero.notesandmore.R
 import com.josenromero.notesandmore.data.notes.NoteEntity
 import com.josenromero.notesandmore.ui.components.MyDialog
 import com.josenromero.notesandmore.ui.theme.NotesAndMoreTheme
@@ -54,12 +56,12 @@ fun RestoreScreen(
                     containerColor = MaterialTheme.colorScheme.background,
                     titleContentColor = MaterialTheme.colorScheme.onBackground
                 ),
-                title = { Text(text = "Trash note") },
+                title = { Text(text = stringResource(id = R.string.trash_note)) },
                 navigationIcon = {
                     IconButton(onClick = { onNavigateToBack() }) {
                         Icon(
                             imageVector = Icons.Filled.Close,
-                            contentDescription = "Back icon",
+                            contentDescription = stringResource(id = R.string.back_icon),
                             tint = MaterialTheme.colorScheme.onBackground
                         )
                     }
@@ -87,14 +89,14 @@ fun RestoreScreen(
                         modifier = Modifier.weight(1f),
                         onClick = { restoreOneNote(selectedNote) }
                     ) {
-                        Text(text = "Restore")
+                        Text(text = stringResource(id = R.string.restore))
                     }
                     Spacer(modifier = Modifier.width(10.dp))
                     OutlinedButton(
                         modifier = Modifier.weight(1f),
                         onClick = { isOpenDialog = true }
                     ) {
-                        Text(text = "Delete")
+                        Text(text = stringResource(id = R.string.delete))
                     }
                 }
                 Spacer(modifier = Modifier.height(15.dp))
@@ -103,7 +105,7 @@ fun RestoreScreen(
                     value = selectedNote.title,
                     readOnly = true,
                     onValueChange = {},
-                    label = { Text(text = "Title") }
+                    label = { Text(text = stringResource(id = R.string.note_title)) }
                 )
                 Spacer(modifier = Modifier.height(15.dp))
                 OutlinedTextField(
@@ -111,7 +113,7 @@ fun RestoreScreen(
                     value = selectedNote.body,
                     readOnly = true,
                     onValueChange = {},
-                    label = { Text(text = "Body") }
+                    label = { Text(text = stringResource(id = R.string.note_body)) }
                 )
                 if(isOpenDialog) {
                     MyDialog(
@@ -121,7 +123,7 @@ fun RestoreScreen(
                             isOpenDialog = false
                         },
                         dismiss = { isOpenDialog = false },
-                        title = "Delete Note?"
+                        title = stringResource(id = R.string.delete_note)
                     )
                 }
             }

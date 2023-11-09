@@ -28,8 +28,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.josenromero.notesandmore.R
 import com.josenromero.notesandmore.data.notes.NoteEntity
 import com.josenromero.notesandmore.ui.components.MyDialog
 import com.josenromero.notesandmore.ui.theme.NotesAndMoreTheme
@@ -56,12 +58,12 @@ fun UpdateScreen(
                     containerColor = MaterialTheme.colorScheme.background,
                     titleContentColor = MaterialTheme.colorScheme.onBackground
                 ),
-                title = { Text(text = "Update a note") },
+                title = { Text(text = stringResource(id = R.string.update_a_note)) },
                 navigationIcon = {
                     IconButton(onClick = { onNavigateToBack() }) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
-                            contentDescription = "Back",
+                            contentDescription = stringResource(id = R.string.back_icon),
                             tint = MaterialTheme.colorScheme.onBackground
                         )
                     }
@@ -70,7 +72,7 @@ fun UpdateScreen(
                     IconButton(onClick = { isOpenDialog = true }) {
                         Icon(
                             imageVector = Icons.Filled.Delete,
-                            contentDescription = "Delete",
+                            contentDescription = stringResource(id = R.string.delete_icon),
                             tint = MaterialTheme.colorScheme.onBackground
                         )
                     }
@@ -80,7 +82,7 @@ fun UpdateScreen(
                     }) {
                         Icon(
                             imageVector = Icons.Filled.Done,
-                            contentDescription = "Update",
+                            contentDescription = stringResource(id = R.string.done_icon),
                             tint = MaterialTheme.colorScheme.onBackground
                         )
                     }
@@ -104,12 +106,12 @@ fun UpdateScreen(
                     modifier = Modifier.fillMaxWidth(),
                     value = title,
                     onValueChange = { newText -> title = newText },
-                    label = { Text(text = "Title") },
+                    label = { Text(text = stringResource(id = R.string.note_title)) },
                     supportingText = {
                         if (isError) {
                             if (title.trim().isNotEmpty()) isError = false
                             Text(
-                                text = "Note title can't be empty",
+                                text = stringResource(id = R.string.update_screen_text_a1),
                                 color = MaterialTheme.colorScheme.error
                             )
                         }
@@ -122,7 +124,7 @@ fun UpdateScreen(
                         .fillMaxHeight(),
                     value = body,
                     onValueChange = { newText -> body = newText },
-                    label = { Text(text = "Body") }
+                    label = { Text(text = stringResource(id = R.string.note_body)) }
                 )
                 if (isOpenDialog) {
                     MyDialog(
@@ -132,7 +134,7 @@ fun UpdateScreen(
                             isOpenDialog = false
                         },
                         dismiss = { isOpenDialog = false },
-                        title = "Delete Note?"
+                        title = stringResource(id = R.string.delete_note)
                     )
                 }
             }

@@ -23,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -49,7 +50,7 @@ fun Menu(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Notes App",
+                    text = stringResource(id = R.string.notes_app),
                     modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.headlineLarge
@@ -57,26 +58,26 @@ fun Menu(
             }
             Divider(modifier = Modifier.padding(vertical = 30.dp))
             NavigationDrawerItem(
-                label = { Text(text = "All notes") },
+                label = { Text(text = stringResource(id = R.string.all_notes)) },
                 selected = false,
                 onClick = { onNavigateToHomeScreen() },
                 icon = {
                     Icon(
                         painter = painterResource(id = R.drawable.note),
-                        contentDescription = "note icon",
+                        contentDescription = stringResource(id = R.string.note_icon),
                         modifier = Modifier.size(32.dp)
                     )
                 },
                 badge = { Text(text = notesTotal.toString()) }
             )
             NavigationDrawerItem(
-                label = { Text(text = "Trash") },
+                label = { Text(text = stringResource(id = R.string.trash)) },
                 selected = false,
                 onClick = { onNavigateToAScreen(AppScreens.TrashScreen.route) },
                 icon = {
                     Icon(
                         imageVector = Icons.Filled.Delete,
-                        contentDescription = "delete icon",
+                        contentDescription = stringResource(id = R.string.delete_icon),
                         modifier = Modifier.size(32.dp)
                     )
                 },
@@ -84,25 +85,25 @@ fun Menu(
             )
             Divider(modifier = Modifier.padding(vertical = 30.dp))
             NavigationDrawerItem(
-                label = { Text(text = "Settings") },
+                label = { Text(text = stringResource(id = R.string.settings)) },
                 selected = false,
                 onClick = { onNavigateToAScreen(AppScreens.SettingsScreen.route) },
                 icon = {
                     Icon(
                         imageVector = Icons.Filled.Settings,
-                        contentDescription = "settings icon",
+                        contentDescription = stringResource(id = R.string.settings_icon),
                         modifier = Modifier.size(32.dp)
                     )
                 }
             )
             NavigationDrawerItem(
-                label = { Text(text = "About") },
+                label = { Text(text = stringResource(id = R.string.about)) },
                 selected = false,
                 onClick = { onNavigateToAScreen(AppScreens.AboutScreen.route) },
                 icon = {
                     Icon(
                         imageVector = Icons.Filled.Info,
-                        contentDescription = "about icon",
+                        contentDescription = stringResource(id = R.string.about_icon),
                         modifier = Modifier.size(32.dp)
                     )
                 }

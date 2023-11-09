@@ -27,8 +27,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.josenromero.notesandmore.R
 import com.josenromero.notesandmore.data.notes.NoteEntity
 import com.josenromero.notesandmore.ui.theme.NotesAndMoreTheme
 
@@ -50,12 +52,12 @@ fun AddScreen(
                     containerColor = MaterialTheme.colorScheme.background,
                     titleContentColor = MaterialTheme.colorScheme.onBackground
                 ),
-                title = { Text(text = "Add a note") },
+                title = { Text(text = stringResource(id = R.string.add_a_note)) },
                 navigationIcon = {
                     IconButton(onClick = { onNavigateToBack() }) {
                         Icon(
                             imageVector = Icons.Filled.Close,
-                            contentDescription = "Back",
+                            contentDescription = stringResource(id = R.string.back_icon),
                             tint = MaterialTheme.colorScheme.onBackground
                         )
                     }
@@ -67,7 +69,7 @@ fun AddScreen(
                     }) {
                         Icon(
                             imageVector = Icons.Filled.Done,
-                            contentDescription = "Save",
+                            contentDescription = stringResource(id = R.string.save_icon),
                             tint = MaterialTheme.colorScheme.onBackground
                         )
                     }
@@ -91,11 +93,11 @@ fun AddScreen(
                     modifier = Modifier.fillMaxWidth(),
                     value = title,
                     onValueChange = { newText -> title = newText },
-                    label = { Text(text = "Note Title") },
+                    label = { Text(text = stringResource(id = R.string.note_title)) },
                     supportingText = {
                         if (isError) {
                             if (title.trim().isNotEmpty()) isError = false
-                            Text(text = "Add a title", color = MaterialTheme.colorScheme.error)
+                            Text(text = stringResource(id = R.string.add_a_title), color = MaterialTheme.colorScheme.error)
                         }
                     }
                 )
@@ -106,7 +108,7 @@ fun AddScreen(
                         .fillMaxHeight(),
                     value = body,
                     onValueChange = { newText -> body = newText },
-                    label = { Text(text = "Note Details") }
+                    label = { Text(text = stringResource(id = R.string.note_details)) }
                 )
             }
         }

@@ -48,7 +48,7 @@ fun LanguageScreen(
                     IconButton(onClick = { onNavigateToBack() }) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
-                            contentDescription = "Back icon",
+                            contentDescription = stringResource(id = R.string.back_icon),
                             tint = MaterialTheme.colorScheme.onBackground
                         )
                     }
@@ -69,7 +69,7 @@ fun LanguageScreen(
                     .padding(15.dp)
             ) {
                 NavigationDrawerItem(
-                    label = { Text(text = "English") },
+                    label = { Text(text = stringResource(id = R.string.english)) },
                     selected = false,
                     onClick = {
                         changeLanguage(Constants.englishTag)
@@ -78,14 +78,14 @@ fun LanguageScreen(
                         if (language == Constants.englishTag) {
                             Icon(
                                 imageVector = Icons.Filled.Done,
-                                contentDescription = "done icon",
+                                contentDescription = stringResource(id = R.string.done_icon),
                                 tint = MaterialTheme.colorScheme.primary
                             )
                         }
                     }
                 )
                 NavigationDrawerItem(
-                    label = { Text(text = "Spanish") },
+                    label = { Text(text = stringResource(id = R.string.spanish)) },
                     selected = false,
                     onClick = {
                         changeLanguage(Constants.spanishTag)
@@ -94,7 +94,7 @@ fun LanguageScreen(
                         if (language == Constants.spanishTag) {
                             Icon(
                                 imageVector = Icons.Filled.Done,
-                                contentDescription = "done icon",
+                                contentDescription = stringResource(id = R.string.done_icon),
                                 tint = MaterialTheme.colorScheme.primary
                             )
                         }

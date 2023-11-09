@@ -21,7 +21,9 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.josenromero.notesandmore.R
 import com.josenromero.notesandmore.data.notes.NoteEntity
 import com.josenromero.notesandmore.ui.components.EmptyNoteList
 import com.josenromero.notesandmore.ui.components.Menu
@@ -61,8 +63,10 @@ fun HomeScreen(
             containerColor = MaterialTheme.colorScheme.background,
             floatingActionButton = {
                 ExtendedFloatingActionButton(
-                    text = { Text(text = "Add") },
-                    icon = { Icon(imageVector = Icons.Filled.Add, contentDescription = "Add") },
+                    text = { Text(text = stringResource(id = R.string.add)) },
+                    icon = { Icon(imageVector = Icons.Filled.Add, contentDescription = stringResource(
+                        id = R.string.add_icon
+                    )) },
                     onClick = { onNavigateToAScreen(AppScreens.AddScreen.route) },
                     containerColor = MaterialTheme.colorScheme.primary
                 )
@@ -73,7 +77,7 @@ fun HomeScreen(
                         containerColor = MaterialTheme.colorScheme.background,
                         titleContentColor = MaterialTheme.colorScheme.onBackground
                     ),
-                    title = { Text(text = "My notes") },
+                    title = { Text(text = stringResource(id = R.string.My_notes)) },
                     navigationIcon = {
                         IconButton(
                             onClick = {
@@ -86,7 +90,7 @@ fun HomeScreen(
                         ) {
                             Icon(
                                 imageVector = Icons.Filled.Menu,
-                                contentDescription = "Toggle drawer",
+                                contentDescription = stringResource(id = R.string.menu_icon),
                                 tint = MaterialTheme.colorScheme.onBackground
                             )
                         }
@@ -95,7 +99,7 @@ fun HomeScreen(
             }
         ) {
             if (notes.isEmpty()) {
-                EmptyNoteList(text = "The notes you add will appear here.")
+                EmptyNoteList(text = stringResource(id = R.string.home_screen_text_a1))
             }
             NoteList(
                 modifier = Modifier.padding(it),

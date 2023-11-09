@@ -23,7 +23,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.josenromero.notesandmore.R
 import com.josenromero.notesandmore.data.notes.NoteEntity
 import com.josenromero.notesandmore.ui.components.EmptyNoteList
 import com.josenromero.notesandmore.ui.components.MyDialog
@@ -50,12 +52,12 @@ fun TrashScreen(
                     containerColor = MaterialTheme.colorScheme.background,
                     titleContentColor = MaterialTheme.colorScheme.onBackground
                 ),
-                title = { Text(text = "Trash") },
+                title = { Text(text = stringResource(id = R.string.trash)) },
                 navigationIcon = {
                     IconButton(onClick = { onNavigateToBack() }) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
-                            contentDescription = "Back",
+                            contentDescription = stringResource(id = R.string.back_icon),
                             tint = MaterialTheme.colorScheme.onBackground
                         )
                     }
@@ -65,7 +67,7 @@ fun TrashScreen(
                         IconButton(onClick = { menuExpanded = !menuExpanded }) {
                             Icon(
                                 imageVector = Icons.Filled.MoreVert,
-                                contentDescription = "More icon",
+                                contentDescription = stringResource(id = R.string.more_icon),
                                 tint = MaterialTheme.colorScheme.onBackground
                             )
                         }
@@ -76,7 +78,7 @@ fun TrashScreen(
                         modifier = Modifier.background(MaterialTheme.colorScheme.tertiaryContainer)
                     ) {
                         DropdownMenuItem(
-                            text = { Text(text = "Empty trash") },
+                            text = { Text(text = stringResource(id = R.string.empty_trash)) },
                             onClick = {
                                 isOpenDialog = true
                                 menuExpanded = false
@@ -90,7 +92,7 @@ fun TrashScreen(
         containerColor = MaterialTheme.colorScheme.background
     ) {
         if(trashedNotes.isEmpty()) {
-            EmptyNoteList("The notes you delete will appear here.")
+            EmptyNoteList(stringResource(id = R.string.trash_screen_text_a1))
         }
 
         NoteList(modifier = Modifier.padding(it), notes = trashedNotes, onSelectedNote = onSelectedNote)
@@ -103,7 +105,7 @@ fun TrashScreen(
                     isOpenDialog = false
                 },
                 dismiss = { isOpenDialog = false },
-                title = "Empty trash?"
+                title = stringResource(id = R.string.empty_trash_)
             )
         }
 

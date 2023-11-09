@@ -24,6 +24,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.josenromero.notesandmore.R
@@ -42,12 +43,12 @@ fun AboutScreen(
                     containerColor = MaterialTheme.colorScheme.background,
                     titleContentColor = MaterialTheme.colorScheme.onBackground
                 ),
-                title = { Text(text = "About")},
+                title = { Text(text = stringResource(id = R.string.about))},
                 navigationIcon = {
                     IconButton(onClick = { onNavigateToBack() }) {
                         Icon(
                             imageVector = Icons.Filled.Close,
-                            contentDescription = "Back icon",
+                            contentDescription = stringResource(id = R.string.back_icon),
                             tint = MaterialTheme.colorScheme.onBackground
                         )
                     }
@@ -69,13 +70,13 @@ fun AboutScreen(
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.logo),
-                    contentDescription = "Logo icon",
+                    contentDescription = stringResource(id = R.string.logo_icon),
                     modifier = Modifier.size(120.dp)
                 )
                 Spacer(modifier = Modifier.height(30.dp))
-                Text(text = "Notes And More")
+                Text(text = stringResource(id = R.string.app_name))
                 Spacer(modifier = Modifier.height(15.dp))
-                Text(text = "Developed by José Romero")
+                Text(text = stringResource(id = R.string.about_screen_text_a1))
             }
         }
     }

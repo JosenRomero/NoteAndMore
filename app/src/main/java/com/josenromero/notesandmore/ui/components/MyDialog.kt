@@ -8,8 +8,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import com.josenromero.notesandmore.R
 import com.josenromero.notesandmore.ui.theme.NotesAndMoreTheme
 
 @Composable
@@ -24,12 +26,12 @@ fun MyDialog(
         onDismissRequest = onDismissRequest,
         confirmButton = {
             TextButton(onClick = { confirm() }) {
-                Text(text = "Yes")
+                Text(text = stringResource(id = R.string.delete))
             }
         },
         dismissButton = {
             TextButton(onClick = { dismiss() }) {
-                Text(text = "No")
+                Text(text = stringResource(id = R.string.cancel))
             }
         },
         title = {
@@ -53,7 +55,7 @@ fun MyDialogPreview() {
             onDismissRequest = {},
             confirm = {},
             dismiss = {},
-            title = "Delete note"
+            title = stringResource(id = R.string.delete_note)
         )
     }
 }

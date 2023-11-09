@@ -1,5 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">notes and more</string>
+
+    <string name="english" translatable="false">English</string>
+    <string name="notes_app" translatable="false">Notes App</string>
+    <string name="spanish" translatable="false">Español</string>
+
+    <string name="about">Acerca de</string>
+    <string name="add">Agregar</string>
+    <string name="add_a_note">Agrega una nota</string>
+    <string name="add_a_title">Agrega un titulo</string>
+    <string name="all_notes">Todas las notas</string>
+    <string name="cancel">Cancelar</string>
+    <string name="dark_mode">Modo oscuro</string>
+    <string name="delete">Eliminar</string>
+    <string name="delete_note">¿Quieres eliminar la nota?</string>
+    <string name="empty_trash">Vaciar papelera</string>
+    <string name="empty_trash_">¿Vaciar papelera de reciclaje?</string>
+    <string name="language">Idioma</string>
+    <string name="My_notes">Mis notas</string>
+    <string name="no_notes">No hay notas</string>
+    <string name="note_body">Cuerpo de la nota</string>
+    <string name="note_details">Detalles de la nota</string>
+    <string name="note_title">Titulo de la nota</string>
+    <string name="trash_note">Nota eliminada</string>
+    <string name="restore">Restaurar</string>
     <string name="select_language">Selecciona el idioma</string>
+    <string name="settings">Ajustes</string>
+    <string name="trash">Papelera de reciclaje</string>
+    <string name="update_a_note">Actualizar una nota</string>
+
+    <!-- screen -->
+    <string name="home_screen_text_a1">Las notas que añadas se mostrarán aquí.</string>
+    <string name="about_screen_text_a1">Desarrollado por José Romero</string>
+    <string name="trash_screen_text_a1">Las notas que elimines se mostrarán aquí.</string>
+    <string name="update_screen_text_a1">El titulo de la nota no puede estar vacio.</string>
+
+    <!-- icons -->
+    <string name="about_icon">Icono acerca de</string>
+    <string name="add_icon">Icono de agregar</string>
+    <string name="arrow_icon">Icono de flecha</string>
+    <string name="done_icon">Icono de hecho</string>
+    <string name="back_icon">Icono de regreso</string>
+    <string name="delete_icon">Icono de eliminar</string>
+    <string name="logo_icon">Icono del logo</string>
+    <string name="more_icon">Icono de más</string>
+    <string name="menu_icon">Icono del menu</string>
+    <string name="moon_icon">Icono de la luna</string>
+    <string name="note_icon">Icono de la nota</string>
+    <string name="save_icon">Icono de guardar</string>
+    <string name="settings_icon">Icono de ajustes</string>
+    <string name="sun_icon">Icono del sol</string>
+
 </resources>

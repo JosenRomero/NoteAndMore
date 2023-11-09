@@ -22,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.josenromero.notesandmore.R
 import com.josenromero.notesandmore.ui.components.SettingItem
@@ -44,12 +45,12 @@ fun SettingsScreen(
                     containerColor = MaterialTheme.colorScheme.background,
                     titleContentColor = MaterialTheme.colorScheme.onBackground
                 ),
-                title = { Text(text = "Settings") },
+                title = { Text(text = stringResource(id = R.string.settings)) },
                 navigationIcon = {
                     IconButton(onClick = { onNavigateToBack() }) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
-                            contentDescription = "Back icon",
+                            contentDescription = stringResource(id = R.string.back_icon),
                             tint = MaterialTheme.colorScheme.onBackground
                         )
                     }
@@ -65,7 +66,7 @@ fun SettingsScreen(
                 .padding(it)
         ) {
             SettingItem(
-                text = "Dark Mode",
+                text = stringResource(id = R.string.dark_mode),
                 onClick = { }
             ) {
                 Switch(
@@ -77,14 +78,14 @@ fun SettingsScreen(
                         if (darkTheme) {
                             Icon(
                                 painter = painterResource(id = R.drawable.moon),
-                                contentDescription = "moon icon",
+                                contentDescription = stringResource(id = R.string.moon_icon),
                                 tint = Color.White,
                                 modifier = Modifier.size(SwitchDefaults.IconSize)
                             )
                         } else {
                             Icon(
                                 painter = painterResource(id = R.drawable.sun),
-                                contentDescription = "sun icon",
+                                contentDescription = stringResource(id = R.string.sun_icon),
                                 tint = Color.White,
                                 modifier = Modifier.size(SwitchDefaults.IconSize)
                             )
@@ -99,12 +100,12 @@ fun SettingsScreen(
                 )
             }
             SettingItem(
-                text = "Language",
+                text = stringResource(id = R.string.language),
                 onClick = { onNavigateToAScreen(AppScreens.LanguageScreen.route) }
             ) {
                 Icon(
                     imageVector = Icons.Filled.KeyboardArrowRight,
-                    contentDescription = "arrow icon"
+                    contentDescription = stringResource(id = R.string.arrow_icon)
                 )
             }
         }
