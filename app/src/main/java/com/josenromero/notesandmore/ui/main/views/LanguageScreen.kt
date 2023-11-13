@@ -21,6 +21,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.os.LocaleListCompat
@@ -113,7 +114,14 @@ fun changeLanguage(localeTag: String) {
 }
 
 fun getCurrentLanguage(): String {
-    return AppCompatDelegate.getApplicationLocales().get(0).toString()
+    return AppCompatDelegate.getApplicationLocales().get(0)?.language ?: getDefaultLanguage()
+}
+
+fun getDefaultLanguage(): String {
+    val systemLanguage: String = Locale.current.language
+    var language = Constants.englishTag
+    if (systemLanguage == Constants.spanishTag) language = systemLanguage
+    return language
 }
 
 @Preview(name = "Light Mode")
