@@ -3,6 +3,7 @@ package com.josenromero.notesandmore.ui.main
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
 import com.josenromero.notesandmore.ui.main.navigation.AppNavigation
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -10,6 +11,9 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
         setContent {
             AppNavigation()
         }

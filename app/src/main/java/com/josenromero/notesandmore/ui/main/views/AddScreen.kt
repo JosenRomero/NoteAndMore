@@ -4,11 +4,13 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Done
@@ -88,12 +90,14 @@ fun AddScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(15.dp)
+                    .imePadding()
             ) {
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
                     value = title,
                     onValueChange = { newText -> title = newText },
                     label = { Text(text = stringResource(id = R.string.note_title)) },
+                    isError = isError,
                     supportingText = {
                         if (isError) {
                             if (title.trim().isNotEmpty()) isError = false
@@ -104,8 +108,8 @@ fun AddScreen(
                 Spacer(modifier = Modifier.height(15.dp))
                 OutlinedTextField(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight(),
+                        .fillMaxSize()
+                        .verticalScroll(rememberScrollState(), reverseScrolling = true),
                     value = body,
                     onValueChange = { newText -> body = newText },
                     label = { Text(text = stringResource(id = R.string.note_details)) }
