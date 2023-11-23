@@ -73,6 +73,8 @@ dependencies {
 
     implementation("androidx.appcompat:appcompat:1.7.0-alpha02")
 
+    implementation("androidx.core:core-splashscreen:1.0.0")
+
     // Room Database
     val roomVersion = "2.5.2"
     implementation("androidx.room:room-runtime:$roomVersion")
