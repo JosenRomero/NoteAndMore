@@ -35,7 +35,7 @@ fun EmptyNoteList(
             Image(
                 painter = painterResource(id = R.drawable.logo),
                 contentDescription = stringResource(id = R.string.logo_icon),
-                modifier = Modifier.size(64.dp)
+                modifier = Modifier.size(160.dp)
             )
             Text(text = stringResource(id = R.string.no_notes))
             Spacer(modifier = Modifier.height(30.dp))

@@ -71,9 +71,8 @@ fun AboutScreen(
                 Image(
                     painter = painterResource(id = R.drawable.logo),
                     contentDescription = stringResource(id = R.string.logo_icon),
-                    modifier = Modifier.size(120.dp)
+                    modifier = Modifier.size(192.dp)
                 )
-                Spacer(modifier = Modifier.height(30.dp))
                 Text(text = stringResource(id = R.string.app_name))
                 Spacer(modifier = Modifier.height(15.dp))
                 Text(text = stringResource(id = R.string.about_screen_text_a1))
