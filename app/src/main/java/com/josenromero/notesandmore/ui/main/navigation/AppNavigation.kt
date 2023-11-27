@@ -16,7 +16,6 @@ import com.josenromero.notesandmore.ui.main.views.HomeScreen
 import com.josenromero.notesandmore.ui.main.views.LanguageScreen
 import com.josenromero.notesandmore.ui.main.views.RestoreScreen
 import com.josenromero.notesandmore.ui.main.views.SettingsScreen
-import com.josenromero.notesandmore.ui.main.views.SplashScreen
 import com.josenromero.notesandmore.ui.main.views.TrashScreen
 import com.josenromero.notesandmore.ui.main.views.UpdateScreen
 import com.josenromero.notesandmore.ui.theme.NotesAndMoreTheme
@@ -31,15 +30,7 @@ fun AppNavigation() {
     NotesAndMoreTheme(
         darkTheme = preferencesViewModel.darkTheme.value
     ) {
-        NavHost(navController = navController, startDestination = AppScreens.SplashScreen.route) {
-            composable(route = AppScreens.SplashScreen.route) {
-                SplashScreen(
-                    onNavigateToHomeScreen = {
-                        navController.popBackStack()
-                        navController.navigate(route = AppScreens.HomeScreen.route)
-                    }
-                )
-            }
+        NavHost(navController = navController, startDestination = AppScreens.HomeScreen.route) {
             composable(route = AppScreens.HomeScreen.route) {
                 HomeScreen(
                     onNavigateToAScreen = { route -> navController.navigate(route) },
