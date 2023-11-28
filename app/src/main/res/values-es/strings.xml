@@ -52,5 +52,6 @@
     <string name="save_icon">Icono de guardar</string>
     <string name="settings_icon">Icono de ajustes</string>
     <string name="sun_icon">Icono del sol</string>
+    <string name="menu_bg_icon">Icono fondo del menu</string>
 
 </resources>

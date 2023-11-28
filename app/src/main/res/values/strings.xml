@@ -51,5 +51,6 @@
     <string name="save_icon">Save icon</string>
     <string name="settings_icon">Settings icon</string>
     <string name="sun_icon">Sun icon</string>
+    <string name="menu_bg_icon">Menu background icon</string>
 
 </resources>

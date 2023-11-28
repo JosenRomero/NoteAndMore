@@ -1,8 +1,12 @@
 package com.josenromero.notesandmore.ui.components
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -11,7 +15,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -22,6 +25,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -41,73 +46,87 @@ fun Menu(
 ) {
 
     ModalDrawerSheet {
-        Column(
-            modifier = Modifier
-                .padding(NavigationDrawerItemDefaults.ItemPadding),
+        Box(
+            modifier = Modifier.fillMaxSize()
         ) {
-            Row(
-                modifier = Modifier.height(120.dp),
-                verticalAlignment = Alignment.CenterVertically
+
+            Image(
+                painter = painterResource(id = R.drawable.menu_bg),
+                contentDescription = stringResource(id = R.string.menu_bg_icon),
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop
+            )
+
+            Column(
+                modifier = Modifier
+                    .padding(NavigationDrawerItemDefaults.ItemPadding),
             ) {
-                Text(
-                    text = stringResource(id = R.string.notes_app),
-                    modifier = Modifier.fillMaxWidth(),
-                    textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.headlineLarge
+                Row(
+                    modifier = Modifier.height(120.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.notes_app),
+                        color = Color.White,
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = TextAlign.Center,
+                        style = MaterialTheme.typography.headlineLarge
+                    )
+                }
+                Spacer(modifier = Modifier.height(100.dp))
+                NavigationDrawerItem(
+                    label = { Text(text = stringResource(id = R.string.all_notes)) },
+                    selected = false,
+                    onClick = { onNavigateToHomeScreen() },
+                    icon = {
+                        Icon(
+                            painter = painterResource(id = R.drawable.note),
+                            contentDescription = stringResource(id = R.string.note_icon),
+                            modifier = Modifier.size(32.dp)
+                        )
+                    },
+                    badge = { Text(text = notesTotal.toString()) }
+                )
+                NavigationDrawerItem(
+                    label = { Text(text = stringResource(id = R.string.trash)) },
+                    selected = false,
+                    onClick = { onNavigateToAScreen(AppScreens.TrashScreen.route) },
+                    icon = {
+                        Icon(
+                            imageVector = Icons.Filled.Delete,
+                            contentDescription = stringResource(id = R.string.delete_icon),
+                            modifier = Modifier.size(32.dp)
+                        )
+                    },
+                    badge = { Text(text = trashNotesTotal.toString()) }
+                )
+                Spacer(modifier = Modifier.padding(vertical = 30.dp))
+                NavigationDrawerItem(
+                    label = { Text(text = stringResource(id = R.string.settings)) },
+                    selected = false,
+                    onClick = { onNavigateToAScreen(AppScreens.SettingsScreen.route) },
+                    icon = {
+                        Icon(
+                            imageVector = Icons.Filled.Settings,
+                            contentDescription = stringResource(id = R.string.settings_icon),
+                            modifier = Modifier.size(32.dp)
+                        )
+                    }
+                )
+                NavigationDrawerItem(
+                    label = { Text(text = stringResource(id = R.string.about)) },
+                    selected = false,
+                    onClick = { onNavigateToAScreen(AppScreens.AboutScreen.route) },
+                    icon = {
+                        Icon(
+                            imageVector = Icons.Filled.Info,
+                            contentDescription = stringResource(id = R.string.about_icon),
+                            modifier = Modifier.size(32.dp)
+                        )
+                    }
                 )
             }
-            Divider(modifier = Modifier.padding(vertical = 30.dp))
-            NavigationDrawerItem(
-                label = { Text(text = stringResource(id = R.string.all_notes)) },
-                selected = false,
-                onClick = { onNavigateToHomeScreen() },
-                icon = {
-                    Icon(
-                        painter = painterResource(id = R.drawable.note),
-                        contentDescription = stringResource(id = R.string.note_icon),
-                        modifier = Modifier.size(32.dp)
-                    )
-                },
-                badge = { Text(text = notesTotal.toString()) }
-            )
-            NavigationDrawerItem(
-                label = { Text(text = stringResource(id = R.string.trash)) },
-                selected = false,
-                onClick = { onNavigateToAScreen(AppScreens.TrashScreen.route) },
-                icon = {
-                    Icon(
-                        imageVector = Icons.Filled.Delete,
-                        contentDescription = stringResource(id = R.string.delete_icon),
-                        modifier = Modifier.size(32.dp)
-                    )
-                },
-                badge = { Text(text = trashNotesTotal.toString()) }
-            )
-            Divider(modifier = Modifier.padding(vertical = 30.dp))
-            NavigationDrawerItem(
-                label = { Text(text = stringResource(id = R.string.settings)) },
-                selected = false,
-                onClick = { onNavigateToAScreen(AppScreens.SettingsScreen.route) },
-                icon = {
-                    Icon(
-                        imageVector = Icons.Filled.Settings,
-                        contentDescription = stringResource(id = R.string.settings_icon),
-                        modifier = Modifier.size(32.dp)
-                    )
-                }
-            )
-            NavigationDrawerItem(
-                label = { Text(text = stringResource(id = R.string.about)) },
-                selected = false,
-                onClick = { onNavigateToAScreen(AppScreens.AboutScreen.route) },
-                icon = {
-                    Icon(
-                        imageVector = Icons.Filled.Info,
-                        contentDescription = stringResource(id = R.string.about_icon),
-                        modifier = Modifier.size(32.dp)
-                    )
-                }
-            )
+
         }
     }
 
