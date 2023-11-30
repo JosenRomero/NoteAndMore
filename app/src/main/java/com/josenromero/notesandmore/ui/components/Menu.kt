@@ -2,6 +2,7 @@ package com.josenromero.notesandmore.ui.components
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -50,19 +51,14 @@ fun Menu(
             modifier = Modifier.fillMaxSize()
         ) {
 
-            Image(
-                painter = painterResource(id = R.drawable.menu_bg),
-                contentDescription = stringResource(id = R.string.menu_bg_icon),
-                modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Crop
-            )
+            Menu_Background()
 
             Column(
                 modifier = Modifier
                     .padding(NavigationDrawerItemDefaults.ItemPadding),
             ) {
                 Row(
-                    modifier = Modifier.height(120.dp),
+                    modifier = Modifier.height(100.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
@@ -100,7 +96,7 @@ fun Menu(
                     },
                     badge = { Text(text = trashNotesTotal.toString()) }
                 )
-                Spacer(modifier = Modifier.padding(vertical = 30.dp))
+                Spacer(modifier = Modifier.padding(vertical = 15.dp))
                 NavigationDrawerItem(
                     label = { Text(text = stringResource(id = R.string.settings)) },
                     selected = false,
@@ -130,6 +126,31 @@ fun Menu(
         }
     }
 
+}
+
+@Composable
+fun Menu_Background() {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.SpaceBetween
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.menu_bgtop),
+            contentDescription = stringResource(id = R.string.menu_bg_icon),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(200.dp),
+            contentScale = ContentScale.FillBounds
+        )
+        Image(
+            painter = painterResource(id = R.drawable.menu_bgbottom),
+            contentDescription = stringResource(id = R.string.menu_bg_icon),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(200.dp),
+            contentScale = ContentScale.FillBounds
+        )
+    }
 }
 
 @Preview(name = "Light Mode", showSystemUi = true)
