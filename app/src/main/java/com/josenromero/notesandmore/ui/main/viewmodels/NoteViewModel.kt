@@ -37,6 +37,8 @@ class NoteViewModel @Inject constructor(
     private val _selectedNote: MutableState<NoteEntity> = mutableStateOf(NoteEntity())
     val selectedNote: State<NoteEntity> get() = _selectedNote
 
+    var isLoadingNotes: Boolean = true
+
     init {
         collectNotes()
         collectTrashedNotes()
@@ -58,6 +60,7 @@ class NoteViewModel @Inject constructor(
 
             withContext(Dispatchers.Main) {
                 _notes.value = allNotes
+                isLoadingNotes = false
             }
 
         }
