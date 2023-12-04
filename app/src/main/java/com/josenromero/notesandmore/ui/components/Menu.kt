@@ -27,6 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -46,7 +47,9 @@ fun Menu(
     onNavigateToAScreen: (route: String) -> Unit,
 ) {
 
-    ModalDrawerSheet {
+    ModalDrawerSheet(
+        drawerShape = RectangleShape
+    ) {
         Box(
             modifier = Modifier.fillMaxSize()
         ) {
@@ -140,7 +143,7 @@ fun Menu_Background() {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(200.dp),
-            contentScale = ContentScale.FillBounds
+            contentScale = ContentScale.Crop
         )
         Image(
             painter = painterResource(id = R.drawable.menu_bgbottom),
@@ -148,7 +151,7 @@ fun Menu_Background() {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(200.dp),
-            contentScale = ContentScale.FillBounds
+            contentScale = ContentScale.Crop
         )
     }
 }
