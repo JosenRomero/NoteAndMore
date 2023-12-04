@@ -20,8 +20,6 @@ class PreferencesViewModel @Inject constructor(
     private val _darkTheme: MutableState<Boolean> = mutableStateOf(false)
     val darkTheme: State<Boolean> get() = _darkTheme
 
-    var isLoadingTheme: Boolean = true
-
     init {
         getDarkThemeValue()
     }
@@ -29,7 +27,6 @@ class PreferencesViewModel @Inject constructor(
     fun getDarkThemeValue() {
         viewModelScope.launch {
             _darkTheme.value = getDarkTheme()
-            isLoadingTheme = false
         }
     }
 
