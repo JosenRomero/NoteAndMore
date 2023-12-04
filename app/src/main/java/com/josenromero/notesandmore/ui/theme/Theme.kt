@@ -2,7 +2,10 @@ package com.josenromero.notesandmore.ui.theme
 
 import android.app.Activity
 import android.os.Build
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
@@ -10,6 +13,7 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
@@ -87,8 +91,35 @@ fun NotesAndMoreTheme(
     }
 
     MaterialTheme(
-        colorScheme = colorScheme,
+        colorScheme = colorScheme.switch(),
         typography = Typography,
         content = content
     )
 }
+
+@Composable
+private fun animateColor(targetValue: Color): Color {
+    return animateColorAsState(
+        targetValue = targetValue,
+        animationSpec = tween(700),
+        label = ""
+    ).value
+}
+
+@Composable
+fun ColorScheme.switch() = copy(
+    primary = animateColor(targetValue = primary),
+    onPrimary = animateColor(targetValue = onPrimary),
+    primaryContainer = animateColor(targetValue = primaryContainer),
+    onPrimaryContainer = animateColor(targetValue = onPrimaryContainer),
+    secondary = animateColor(targetValue = secondary),
+    onSecondary = animateColor(targetValue = onSecondary),
+    secondaryContainer = animateColor(targetValue = secondaryContainer),
+    onSecondaryContainer = animateColor(targetValue = onSecondaryContainer),
+    tertiary = animateColor(targetValue = tertiary),
+    onTertiary = animateColor(targetValue = onTertiary),
+    tertiaryContainer = animateColor(targetValue = tertiaryContainer),
+    onTertiaryContainer = animateColor(targetValue = onTertiaryContainer),
+    background = animateColor(targetValue = background),
+    onBackground = animateColor(targetValue = onBackground)
+)
