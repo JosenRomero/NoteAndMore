@@ -14,6 +14,9 @@ import com.josenromero.notesandmore.domain.notes.GetAllTrashedNotes
 import com.josenromero.notesandmore.domain.notes.UpdateOneNote
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -37,9 +40,20 @@ class NoteViewModel @Inject constructor(
     private val _selectedNote: MutableState<NoteEntity> = mutableStateOf(NoteEntity())
     val selectedNote: State<NoteEntity> get() = _selectedNote
 
+    private val _isLoading = MutableStateFlow(true)
+    val isLoading = _isLoading.asStateFlow()
+
     init {
+        waitOneMoment()
         collectNotes()
         collectTrashedNotes()
+    }
+
+    private fun waitOneMoment() {
+        viewModelScope.launch(Dispatchers.IO) {
+            delay(3000L)
+            _isLoading.value = false
+        }
     }
 
     private fun collectTrashedNotes() {
