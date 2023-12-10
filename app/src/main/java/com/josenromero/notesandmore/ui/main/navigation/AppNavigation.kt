@@ -31,7 +31,45 @@ fun AppNavigation() {
         darkTheme = preferencesViewModel.darkTheme.value
     ) {
         NavHost(navController = navController, startDestination = AppScreens.HomeScreen.route) {
-            composable(route = AppScreens.HomeScreen.route) {
+            composable(
+                route = AppScreens.HomeScreen.route,
+                enterTransition = {
+                    when(initialState.destination.route) {
+                        AppScreens.AddScreen.route,
+                        AppScreens.AboutScreen.route ->
+                            slideIntoContainer(
+                                towards = AnimatedContentTransitionScope.SlideDirection.Down,
+                                animationSpec = tween(700)
+                            )
+                        AppScreens.UpdateScreen.route,
+                        AppScreens.TrashScreen.route,
+                        AppScreens.SettingsScreen.route ->
+                            slideIntoContainer(
+                                towards = AnimatedContentTransitionScope.SlideDirection.Right,
+                                animationSpec = tween(700)
+                            )
+                        else -> null
+                    }
+                },
+                exitTransition = {
+                    when(targetState.destination.route) {
+                        AppScreens.AddScreen.route,
+                        AppScreens.AboutScreen.route ->
+                            slideOutOfContainer(
+                                towards = AnimatedContentTransitionScope.SlideDirection.Up,
+                                animationSpec = tween(700)
+                            )
+                        AppScreens.UpdateScreen.route,
+                        AppScreens.TrashScreen.route,
+                        AppScreens.SettingsScreen.route ->
+                            slideOutOfContainer(
+                                towards = AnimatedContentTransitionScope.SlideDirection.Left,
+                                animationSpec = tween(700)
+                            )
+                        else -> null
+                    }
+                }
+            ) {
                 HomeScreen(
                     onNavigateToAScreen = { route -> navController.navigate(route) },
                     notes = noteViewModel.notes.value,
@@ -92,7 +130,33 @@ fun AppNavigation() {
                     }
                 )
             }
-            composable(route = AppScreens.TrashScreen.route) {
+            composable(
+                route = AppScreens.TrashScreen.route,
+                enterTransition = {
+                    slideIntoContainer(
+                        towards = AnimatedContentTransitionScope.SlideDirection.Left,
+                        animationSpec = tween(700)
+                    )
+                },
+                exitTransition = {
+                    slideOutOfContainer(
+                        towards = AnimatedContentTransitionScope.SlideDirection.Up,
+                        animationSpec = tween(700)
+                    )
+                },
+                popEnterTransition = {
+                    slideIntoContainer(
+                        towards = AnimatedContentTransitionScope.SlideDirection.Down,
+                        animationSpec = tween(700)
+                    )
+                },
+                popExitTransition = {
+                    slideOutOfContainer(
+                        towards = AnimatedContentTransitionScope.SlideDirection.Right,
+                        animationSpec = tween(700)
+                    )
+                }
+            ) {
                 TrashScreen(
                     onNavigateToBack = { navController.popBackStack() },
                     trashedNotes = noteViewModel.trashedNotes.value,
@@ -186,7 +250,21 @@ fun AppNavigation() {
                     darkTheme = preferencesViewModel.darkTheme.value
                 )
             }
-            composable(route = AppScreens.LanguageScreen.route) {
+            composable(
+                route = AppScreens.LanguageScreen.route,
+                enterTransition = {
+                    slideIntoContainer(
+                        towards = AnimatedContentTransitionScope.SlideDirection.Left,
+                        animationSpec = tween(700)
+                    )
+                },
+                exitTransition = {
+                    slideOutOfContainer(
+                        towards = AnimatedContentTransitionScope.SlideDirection.Right,
+                        animationSpec = tween(700)
+                    )
+                }
+            ) {
                 LanguageScreen(
                     onNavigateToBack = { navController.popBackStack() }
                 )
