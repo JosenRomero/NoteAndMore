@@ -52,6 +52,7 @@ fun UpdateScreen(
     var body by remember { mutableStateOf(selectedNote.body) }
     var isError by remember { mutableStateOf(false) }
     var isOpenDialog by remember { mutableStateOf(false) }
+    var isDialogToSave by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -62,7 +63,13 @@ fun UpdateScreen(
                 ),
                 title = { Text(text = stringResource(id = R.string.update_a_note)) },
                 navigationIcon = {
-                    IconButton(onClick = { onNavigateToBack() }) {
+                    IconButton(onClick = {
+                        if((selectedNote.title == title) && (selectedNote.body == body)) {
+                            onNavigateToBack()
+                        } else {
+                            isDialogToSave = true
+                        }
+                    }) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
                             contentDescription = stringResource(id = R.string.back_icon),
@@ -139,6 +146,23 @@ fun UpdateScreen(
                         },
                         dismiss = { isOpenDialog = false },
                         title = stringResource(id = R.string.delete_note)
+                    )
+                }
+                if(isDialogToSave) {
+                    MyDialog(
+                        onDismissRequest = { isDialogToSave = false },
+                        confirm = {
+                            if (title.trim().isEmpty()) isError = true
+                            else updateOneNote(NoteEntity(selectedNote.uid, title, body))
+                            isDialogToSave = false
+                        },
+                        dismiss = {
+                            isDialogToSave = false
+                            onNavigateToBack()
+                        },
+                        confirmText = stringResource(id = R.string.save),
+                        dismissText = stringResource(id = R.string.discard),
+                        title = stringResource(id = R.string.save_or_discard)
                     )
                 }
             }

@@ -14,6 +14,7 @@
     <string name="all_notes">Todas las notas</string>
     <string name="cancel">Cancelar</string>
     <string name="dark_mode">Modo oscuro</string>
+    <string name="discard">Descartar</string>
     <string name="delete">Eliminar</string>
     <string name="delete_note">¿Quieres eliminar la nota?</string>
     <string name="empty_trash">Vaciar papelera</string>
@@ -26,6 +27,8 @@
     <string name="note_title">Titulo de la nota</string>
     <string name="trash_note">Nota eliminada</string>
     <string name="restore">Restaurar</string>
+    <string name="save">Guardar</string>
+    <string name="save_or_discard">¿Guardar cambios o descartarlos?</string>
     <string name="select_language">Selecciona el idioma</string>
     <string name="settings">Ajustes</string>
     <string name="trash">Papelera de reciclaje</string>
