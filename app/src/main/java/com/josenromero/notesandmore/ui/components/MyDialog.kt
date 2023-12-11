@@ -19,6 +19,8 @@ fun MyDialog(
     onDismissRequest: () -> Unit,
     confirm: () -> Unit,
     dismiss: () -> Unit,
+    confirmText: String = stringResource(id = R.string.delete),
+    dismissText: String = stringResource(id = R.string.cancel),
     title: String
 ) {
 
@@ -26,12 +28,12 @@ fun MyDialog(
         onDismissRequest = onDismissRequest,
         confirmButton = {
             TextButton(onClick = { confirm() }) {
-                Text(text = stringResource(id = R.string.delete))
+                Text(text = confirmText)
             }
         },
         dismissButton = {
             TextButton(onClick = { dismiss() }) {
-                Text(text = stringResource(id = R.string.cancel))
+                Text(text = dismissText)
             }
         },
         title = {
