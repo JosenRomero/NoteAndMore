@@ -34,6 +34,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.josenromero.notesandmore.R
 import com.josenromero.notesandmore.data.notes.NoteEntity
+import com.josenromero.notesandmore.ui.components.MyDialog
 import com.josenromero.notesandmore.ui.theme.NotesAndMoreTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -46,6 +47,7 @@ fun AddScreen(
     var title by remember { mutableStateOf("") }
     var body by remember { mutableStateOf("") }
     var isError by remember { mutableStateOf(false) }
+    var isDialogToSave by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -56,7 +58,13 @@ fun AddScreen(
                 ),
                 title = { Text(text = stringResource(id = R.string.add_a_note)) },
                 navigationIcon = {
-                    IconButton(onClick = { onNavigateToBack() }) {
+                    IconButton(onClick = {
+                        if(title.trim().isEmpty() && body.trim().isEmpty()) {
+                            onNavigateToBack()
+                        } else {
+                            isDialogToSave = true
+                        }
+                    }) {
                         Icon(
                             imageVector = Icons.Filled.Close,
                             contentDescription = stringResource(id = R.string.back_icon),
@@ -113,6 +121,23 @@ fun AddScreen(
                     value = body,
                     onValueChange = { newText -> body = newText },
                     label = { Text(text = stringResource(id = R.string.note_details)) }
+                )
+            }
+            if(isDialogToSave) {
+                MyDialog(
+                    onDismissRequest = { isDialogToSave = false },
+                    confirm = {
+                        if (title.trim().isEmpty()) isError = true
+                        else addOneNote(NoteEntity(0, title, body))
+                        isDialogToSave = false
+                    },
+                    dismiss = {
+                        isDialogToSave = false
+                        onNavigateToBack()
+                    },
+                    confirmText = stringResource(id = R.string.save),
+                    dismissText = stringResource(id = R.string.discard),
+                    title = stringResource(id = R.string.save_or_discard)
                 )
             }
         }
